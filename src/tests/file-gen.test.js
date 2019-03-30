@@ -7,8 +7,29 @@ describe('when we construct a new file gen', () => {
         expect(test).toThrowError();
     });
 
-    it('should be an error if there is no entities configured', () => {
-        let test = () => new FileGen({});
+    it('should be an error if there is no folderNameCase configured', () => {
+        let test = () => new FileGen({
+            fileNameCase: 'test',
+            templatePath: 'test'
+        });
+
+        expect(test).toThrowError();
+    });
+
+    it('should be an error if there is no fileNameCase configured', () => {
+        let test = () => new FileGen({
+            folderNameCase: 'test',
+            templatePath: 'test'
+        });
+
+        expect(test).toThrowError();
+    });
+
+    it('should be an error if there is no templatePath configured', () => {
+        let test = () => new FileGen({
+            folderNameCase: 'test',
+            fileNameCase: 'test'
+        });
 
         expect(test).toThrowError();
     });

@@ -24,7 +24,7 @@ A command line interface that generate files for your application
 |  Params |  definition  |  default | required | possible values |
 |-|-|-|-|-|
 |cliName|the name of your cli|file-gen-cli|false|
-|fileExtension|the extension of the generated files (can be override individually)||true|
+|fileExtension|the extension of the generated files (can be override individually)||false|
 |fileNameCase|the case of the files name|kebab|false|kebab, camel, pascal, constant
 |folderNameCase|the case of the folders name|kebab|false|kebab, camel, pascal, constant|
 |templatePath|the path to the files template||true||
