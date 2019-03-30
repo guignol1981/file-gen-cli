@@ -3,10 +3,18 @@ const fs = require('fs');
 
 module.exports = class FileGen {
     constructor(config) {
+        this.configGuard();
+
         this.folderNameCase = config.folderNameCase;
         this.fileNameCase = config.fileNameCase;
         this.fileExtension = config.fileExtension;
         this.templatePath = config.templatePath;
+    }
+
+    configGuard(config) {
+        if (!config || !config.folderNameCase || !config.fileNameCase || !config.templatePath) {
+            throw Error('there is a problem with your configuration, please refer to documentation');
+        }
     }
 
     generate(entityConfig, instanceName) {
