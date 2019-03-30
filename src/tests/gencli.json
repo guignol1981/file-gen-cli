@@ -1,0 +1,51 @@
+{
+    "cliName": "my-app-cli",
+    "fileExtension": "ts",
+    "fileNameCase": "kebab",
+    "folderNameCase": "kebab",
+    "templatePath": "/cli-templates",
+    "entityConfigs": [
+        {
+            "name": "module",
+            "rootPath": "/modules",
+            "fileConfigs": [
+                {
+                    "name": "*",
+                    "template": "model.txt"
+                },
+                {
+                    "name": "*-service",
+                    "template": "service.txt"
+                },
+                {
+                    "name": "*-module",
+                    "template": "module.txt"
+                },
+                {
+                    "name": "*-state",
+                    "template": "state.txt"
+                }
+            ]
+        },
+        {
+            "name": "component",
+            "rootPath": "/components",
+            "prefix": "my-app",
+            "files": [
+                {
+                    "name": "*",
+                    "template": "vue.txt"
+                },
+                {
+                    "name": "*",
+                    "extension": "html"
+                },
+                {
+                    "name": "*",
+                    "extension": "scss",
+                    "template": "style.txt"
+                }
+            ]
+        }
+    ]
+}

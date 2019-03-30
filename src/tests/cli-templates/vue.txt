@@ -1,0 +1,9 @@
+import Vue from 'vue';
+import Component from 'vue-class-component';
+import WithRender from './{{SINGULAR_KEBAB_CASE}}.html?style=./{{SINGULAR_KEBAB_CASE}}.scss';
+
+@WithRender
+@Component
+export default class {{SINGULAR_PASCAL_CASE}} extends Vue {
+
+}
