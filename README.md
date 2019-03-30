@@ -58,5 +58,5 @@ A command line interface that generate files for your application
 
 ## License
 
-- Copyright (c) 2018 Vincent Guillemette (github: guignol1981) Licensed under the MIT license.
+- Copyright (c) 2019 Vincent Guillemette (github: guignol1981) Licensed under the MIT license.
 
