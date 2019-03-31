@@ -73,7 +73,6 @@ A CLI that generate files for your application
 
  - Expand test suite coverage
  - Better documentation
- - Allow to fetch template from url in config file
  - Fix better code integration
 
 ## Contributing
