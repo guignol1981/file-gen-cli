@@ -71,7 +71,7 @@ A CLI that generate files for your application
 
 ## TODO
 
- - Fix better code integration
+ - Fix bettercodehub integration
 
 ## Contributing
 
