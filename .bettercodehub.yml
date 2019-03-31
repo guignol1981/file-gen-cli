@@ -2,4 +2,4 @@ component_depth: 1
 languages:
 - javascript
 exclude:
-- /src/tests/cli-templates/.*
+- /src/tests/.*
