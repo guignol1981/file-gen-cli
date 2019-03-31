@@ -17,7 +17,7 @@ A CLI that generate files for your application
  - Add this script in your **package.json**
  	>  "my-app-name-cli": "./node_modules/.bin/file-gen-cli"
  - Add a folder to hold your files templates
- - Run with 
+ - Run with
  	>  `npm run my-app-name-cli`
 
 ## Documentation
@@ -47,11 +47,26 @@ A CLI that generate files for your application
 |template|the template name for the file (no template will generate an empty file)||false||
 |extension|override the file extension of the general config|the fileExtension value|false||
 
-### Templates 
+### Templates
 
 |keyword|replaced with|
 |-|-|
 |{{SINGULAR_PASCAL_CASE}}|instance name pascal case|
+|{{SINGULAR_CAMEL_CASE}}|instance name camel case|
+|{{SINGULAR_CONSTANT_CASE}}|instance name constant case|
+|{{SINGULAR_KEBAB_CASE}}|instance name kebab case|
+|{{PLURAL_PASCAL_CASE}}|instance plural name pascal case|
+|{{PLURAL_CAMEL_CASE}}|instance plural name came case|
+|{{PLURAL_CONSTANT_CASE}}|instance plural name constant case|
+|{{PLURAL_KEBAB_CASE}}|instance plural name kebab case|
+|{{PREFIXED_SINGULAR_PASCAL_CASE}}|instance prefixed name pascal case|
+|{{PREFIXED_SINGULAR_CAMEL_CASE}}|instance prefixed name camel case|
+|{{PREFIXED_SINGULAR_CONSTANT_CASE}}|instance prefixed name constant case|
+|{{PREFIXED_SINGULAR_KEBAB_CASE}}|instance prefixed name kebab case|
+|{{PREFIXED_PLURAL_PASCAL_CASE}}|instance prefixed plural name pascal case|
+|{{PREFIXED_PLURAL_CAMEL_CASE}}|instance prefixed plural name camel case|
+|{{PREFIXED_PLURAL_CONSTANT_CASE}}|instance prefixed plural name constant case|
+|{{PREFIXED_PLURAL_KEBAB_CASE}}|instance prefixed plural name kebab case|
 
 ## TODO
 
