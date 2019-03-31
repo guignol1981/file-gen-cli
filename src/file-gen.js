@@ -19,7 +19,7 @@ module.exports = class FileGen {
 
     generate(entityConfig, instanceName) {
         entityConfig.fileConfigs.forEach(fileConfig => {
-            const dirName = `${process.cwd()}${entityConfig.rootPath}/${changeCase[this.folderNameCase](instanceName.singular)}`;
+            const dirName = `${process.cwd()}${entityConfig.path}/${changeCase[this.folderNameCase](instanceName.singular)}`;
 
             this.createDir(dirName);
 

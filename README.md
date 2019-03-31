@@ -30,14 +30,14 @@ A CLI that generate files for your application
 |fileExtension|the extension of the generated files (can be override individually)||false|
 |fileNameCase|the case of the files name|kebab|false|kebab, camel, pascal, constant
 |folderNameCase|the case of the folders name|kebab|false|kebab, camel, pascal, constant|
-|templatePath|the path to the files template||true||
+|templatePath|the path to the files template (from project root)||true||
 |entityConfigs|an array of entity configs||true||
 
 ### Entity config
 |  Param |  definition  |  default | required | possible values |
 |-|-|-|-|-|
 |name|the entity instance name||true||
-|rootPath|the path where to create the entity instance||true||
+|path|the path where to create the entity instance (from project root)||true||
 |prefix|the entity prefix that can occur in different files template||false||
 |fileConfigs|an array of file configs||true||
 

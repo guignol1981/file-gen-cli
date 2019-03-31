@@ -7,7 +7,7 @@
     "entityConfigs": [
         {
             "name": "module",
-            "rootPath": "/src/tests/test-entity",
+            "path": "/src/tests/test-entity",
             "fileConfigs": [
                 {
                     "name": "*-test",
