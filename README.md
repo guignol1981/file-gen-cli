@@ -71,8 +71,6 @@ A CLI that generate files for your application
 
 ## TODO
 
- - Expand test suite coverage
- - Better documentation
  - Fix better code integration
 
 ## Contributing
