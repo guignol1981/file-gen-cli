@@ -62,7 +62,6 @@ module.exports = class FileGen {
     }
 
     replaceTemplatePlaceholders(contents, instanceName) {
-        console.log(instanceName);
         contents = contents
             .replace(/{{SINGULAR_PASCAL_CASE}}/gi, changeCase.pascalCase(instanceName.singular))
             .replace(/{{SINGULAR_CAMEL_CASE}}/gi, changeCase.camelCase(instanceName.singular))
