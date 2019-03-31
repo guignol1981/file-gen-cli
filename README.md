@@ -37,7 +37,7 @@ A CLI that generate files for your application
 |  Param |  definition  |  default | required | possible values |
 |-|-|-|-|-|
 |name|the entity name||true||
-|path|the path where to create the entity instance (from project root)||true||
+|path|the path where to create the entity instances (from project root)||true||
 |prefix|the entity prefix that can occur in different files template||false||
 |fileConfigs|an array of file configs||true||
 
