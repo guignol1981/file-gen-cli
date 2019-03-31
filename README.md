@@ -7,7 +7,7 @@
 
 # file-gen-cli
 
-A command line interface that generate files for your application
+A CLI that generate files for your application
 
 ## Installation
  - `npm install file-gen-cli --save-dev`
