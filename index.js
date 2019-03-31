@@ -20,7 +20,7 @@ const greet = () => {
     );
 };
 
-const run = () => {
+const run = async () => {
     greet();
 
     const fileGen = new FileGen(config);
