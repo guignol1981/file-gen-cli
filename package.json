@@ -9,6 +9,10 @@
         "test": "jest"
     },
     "author": "Vincent Guillemette",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/guignol1981/file-gen-cli",
+    },
     "license": "MIT",
     "dependencies": {
         "chalk": "^2.4.2",
