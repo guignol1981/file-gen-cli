@@ -2,7 +2,7 @@ const inquirer = require('inquirer');
 
 module.exports = class CLI {
     constructor(config) {
-        this.configGuard();
+        this.configGuard(config);
 
         this.name = config.cliName || 'file-gen-cli';
         this.entityConfigs = config.entityConfigs;
@@ -20,7 +20,8 @@ module.exports = class CLI {
             type: "list",
             message: "Please select one of the bellow entities to generate",
             choices: this.entityConfigs.map(el => el.name)
-        }]);
+        }])
+            .then(answer => answer['ENTITY']);
     }
 
     queryInstanceNameSingular() {
@@ -28,7 +29,8 @@ module.exports = class CLI {
             name: "SINGULAR",
             type: "input",
             message: "What is the instance name?"
-        }]);
+        }])
+            .then(answer => answer['SINGULAR']);
     }
 
     queryInstanceNamePlural() {
@@ -36,7 +38,8 @@ module.exports = class CLI {
             name: "PLURAL",
             type: "input",
             message: "What is the instance plural name?"
-        }]);
+        }])
+            .then(answer => answer['PLURAL']);
     }
 };
 

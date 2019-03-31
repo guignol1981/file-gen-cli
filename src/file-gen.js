@@ -3,7 +3,7 @@ const fs = require('fs');
 
 module.exports = class FileGen {
     constructor(config) {
-        this.configGuard();
+        this.configGuard(config);
 
         this.folderNameCase = config.folderNameCase;
         this.fileNameCase = config.fileNameCase;

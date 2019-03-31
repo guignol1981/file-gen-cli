@@ -26,13 +26,12 @@ const run = async () => {
     const fileGen = new FileGen(config);
     const cli = new CLI(config);
 
-    const entityAnswer = await cli.queryEntity();
-    const instanceNameSingularAnswer = await cli.queryInstanceNameSingular();
-    const instanceNamePluralAnswer = await cli.queryInstanceNamePlural();
+    const entityName = await cli.queryEntity();
+    const instanceNameSingular = await cli.queryInstanceNameSingular();
+    const instanceNamePlural = await cli.queryInstanceNamePlural();
 
-    const entityConfig = config.entityConfigs.find(ec => ec.name === entityAnswer['ENTITY']);
-
-    fileGen.generate(entityConfig, { singular: instanceNameSingularAnswer['SINGULAR'], plural: instanceNamePluralAnswer['PLURAL'] });
+    const entityConfig = config.entityConfigs.find(ec => ec.name === entityName);
+    fileGen.generate(entityConfig, { singular: instanceNameSingular, plural: instanceNamePlural });
 };
 
 run();
