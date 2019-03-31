@@ -20,18 +20,25 @@ const greet = () => {
     );
 };
 
+const done = () => {
+    console.log(
+        chalk.white.bgBlue.bold(`Done!`)
+    );
+};
+
 const run = async () => {
     greet();
 
     const fileGen = new FileGen(config);
     const cli = new CLI(config);
-
     const entityName = await cli.queryEntity();
     const instanceNameSingular = await cli.queryInstanceNameSingular();
     const instanceNamePlural = await cli.queryInstanceNamePlural();
-
     const entityConfig = config.entityConfigs.find(ec => ec.name === entityName);
+
     fileGen.generate(entityConfig, { singular: instanceNameSingular, plural: instanceNamePlural });
+
+    done();
 };
 
 run();
