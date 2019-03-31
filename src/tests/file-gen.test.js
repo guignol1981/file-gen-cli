@@ -41,7 +41,6 @@ describe('when we construct a new file gen', () => {
 
         expect(test).toThrowError();
     });
-
 });
 
 describe('when we generate a new entity instance', () => {
