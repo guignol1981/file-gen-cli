@@ -23,7 +23,7 @@ A CLI that generate files for your application
 ## Documentation
 
 ### General config
-|  Params |  definition  |  default | required | possible values |
+|  Param |  definition  |  default | required | possible values |
 |-|-|-|-|-|
 |cliName|the name of your cli|file-gen-cli|false|
 |fileExtension|the extension of the generated files (can be override individually)||false|
@@ -33,7 +33,7 @@ A CLI that generate files for your application
 |entityConfigs|an array of entity configs||true||
 
 ### Entity config
-|  Params |  definition  |  default | required | possible values |
+|  Param |  definition  |  default | required | possible values |
 |-|-|-|-|-|
 |name|the entity instance name||true||
 |rootPath|the path where to create the entity instance||true||
@@ -41,7 +41,7 @@ A CLI that generate files for your application
 |fileConfigs|an array of file configs||true||
 
 ### File config
-|  Params |  definition  |  default | required | possible values |
+|  Param |  definition  |  default | required | possible values |
 |-|-|-|-|-|
 |name|the file name (the `*` symbole is replaced by the entity instance name)||true||
 |template|the template name for the file (no template will generate an empty file)||false||
