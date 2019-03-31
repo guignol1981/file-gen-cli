@@ -1,5 +1,0 @@
-export class {{SINGULAR_PASCAL_CASE}} {
-    constructor(
-        private id: string
-    ) { }
-}

@@ -1,8 +1,0 @@
-import { HttpService } from '@ulaval/modul-components/dist/utils/http/http';
-import { AxiosPromise } from 'axios';
-import { {{SINGULAR_PASCAL_CASE}} } from './{{SINGULAR_KEBAB_CASE}}';
-
-export class {{SINGULAR_PASCAL_CASE}}Service {
-    constructor(private serviceRest: HttpService, private urlBase: string) {
-    }
-}
