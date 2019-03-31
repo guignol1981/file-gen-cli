@@ -8,6 +8,7 @@
         {
             "name": "module",
             "path": "/src/tests/test-entity",
+            "prefix": "test",
             "fileConfigs": [
                 {
                     "name": "*-test",
