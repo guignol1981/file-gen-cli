@@ -10,13 +10,15 @@
 A CLI that generate files for your application
 
 ## Installation
- - `npm install file-gen-cli --save-dev`
+ - Install with
+ 	> `npm install file-gen-cli --save-dev`
  - Add a **gencli.json** file at the root of your project
 	>  gencli.json example [here](https://github.com/guignol1981/file-gen-cli/blob/master/src/tests/gencli.json)
  - Add this script in your **package.json**
  	>  "my-app-name-cli": "./node_modules/.bin/file-gen-cli"
  - Add a folder to hold your files templates
- - Run with npm `run my-app-name-cli`
+ - Run with 
+ 	>  `npm run my-app-name-cli`
 
 ## Documentation
 
@@ -44,6 +46,12 @@ A CLI that generate files for your application
 |name|the file name (the `*` symbole is replaced by the entity instance name)||true||
 |template|the template name for the file (no template will generate an empty file)||false||
 |extension|override the file extension of the general config|the fileExtension value|false||
+
+### Templates 
+
+|keyword|replaced with|
+|-|-|
+|{{SINGULAR_PASCAL_CASE}}|instance name pascal case|
 
 ## TODO
 
