@@ -21,7 +21,7 @@ A CLI that generate files for your application
  - Run with
  	>  `npm run my-app-name-cli`
 
-## Documentation
+## Documentation (gencli.json)
 
 ### General config
 |  Param |  definition  |  default | required | possible values |
