@@ -16,10 +16,10 @@ A CLI that generate files for your application
  - Add a **gencli.json** file at the root of your project
 	>  gencli.json example [here](https://github.com/guignol1981/file-gen-cli/blob/master/src/tests/gencli.json)
  - Add this script in your **package.json**
- 	>  "my-app-name-cli": "./node_modules/.bin/file-gen-cli"
+ 	>  "file-gen-cli": "./node_modules/.bin/file-gen-cli"
  - Add a folder to hold your files templates
  - Run with
- 	>  `npm run my-app-name-cli`
+ 	>  `npm run file-gen-cli`
 
 ## Documentation (gencli.json)
 
