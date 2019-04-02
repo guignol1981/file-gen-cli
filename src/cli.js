@@ -4,7 +4,6 @@ module.exports = class CLI {
     constructor(config) {
         this.configGuard(config);
 
-        this.name = config.cliName || 'file-gen-cli';
         this.entityConfigs = config.entityConfigs;
     }
 

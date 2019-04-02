@@ -10,6 +10,7 @@ changeCase.pascal.mockImplementation(() => 'test');
 changeCase.camel.mockImplementation(() => 'test');
 changeCase.kebab.mockImplementation(() => 'test');
 changeCase.constant.mockImplementation(() => 'test');
+changeCase.snake.mockImplementation(() => 'test');
 
 describe('when we construct a new file gen', () => {
     it('should be an error if there is no config passed to the file gen', () => {
@@ -72,18 +73,22 @@ describe('when we generate a new entity instance', () => {
         expect(changeCase.camel).toBeCalledWith('test');
         expect(changeCase.kebab).toBeCalledWith('test');
         expect(changeCase.constant).toBeCalledWith('test');
+        expect(changeCase.snake).toBeCalledWith('test');
         expect(changeCase.pascal).toBeCalledWith('tests');
         expect(changeCase.camel).toBeCalledWith('tests');
         expect(changeCase.kebab).toBeCalledWith('tests');
         expect(changeCase.constant).toBeCalledWith('tests');
+        expect(changeCase.snake).toBeCalledWith('tests');
         expect(changeCase.pascal).toBeCalledWith('test test');
         expect(changeCase.camel).toBeCalledWith('test test');
         expect(changeCase.kebab).toBeCalledWith('test test');
         expect(changeCase.constant).toBeCalledWith('test test');
+        expect(changeCase.snake).toBeCalledWith('test test');
         expect(changeCase.pascal).toBeCalledWith('test tests');
         expect(changeCase.camel).toBeCalledWith('test tests');
         expect(changeCase.kebab).toBeCalledWith('test tests');
         expect(changeCase.constant).toBeCalledWith('test tests');
+        expect(changeCase.snake).toBeCalledWith('test tests');
     });
 
     afterEach(() => {
