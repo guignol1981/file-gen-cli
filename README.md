@@ -13,11 +13,11 @@ A CLI that generate files for your application
 ## Installation
  - Install with
  	> `npm install file-gen-cli --save-dev`
+ - Add a folder to hold your files templates
  - Add a **gencli.json** file at the root of your project
 	>  gencli.json example [here](https://github.com/guignol1981/file-gen-cli/blob/master/src/tests/gencli.json)
  - Add this script in your **package.json**
  	>  "file-gen-cli": "./node_modules/.bin/file-gen-cli"
- - Add a folder to hold your files templates
  - Run with
  	>  `npm run file-gen-cli`
 
