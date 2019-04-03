@@ -1,0 +1,9 @@
+export class {{SINGULAR_PASCAL_CASE}} extends RESTRessource<{{SINGULAR_PASCAL_CASE}}> {
+    public readonly name: string = '{{SINGULAR_KEBAB_CASE}}';
+    public readonly pluralName: string = '{{PLURAL_KEBAB_CASE}}';
+
+    public deserialize(raw: any): Offre {
+        // TODO config ressource from raw
+        return new {{SINGULAR_PASCAL_CASE}}();
+    }
+}

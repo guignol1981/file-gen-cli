@@ -1,0 +1,12 @@
+import { HttpService } from '@ulaval/modul-components/dist/utils/http/http';
+import { AxiosPromise } from 'axios';
+import { {{SINGULAR_PASCAL_CASE}} } from './{{SINGULAR_KEBAB_CASE}}';
+
+export class {{SINGULAR_PASCAL_CASE}}Service extends RESTService<{{SINGULAR_PASCAL_CASE}}> {
+    readonly nomRessource: string = '{{SINGULAR_SNAKE_CASE}}';
+    readonly nomRessourcePluriel: string = '{{PLURAL_SNAKE_CASE}}';
+
+    protected createNewRessource(): {{SINGULAR_PASCAL_CASE}} {
+        return new {{SINGULAR_PASCAL_CASE}}();
+    }
+}
