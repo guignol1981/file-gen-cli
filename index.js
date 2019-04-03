@@ -3,27 +3,15 @@
 const figlet = require('figlet');
 const chalk = require('chalk');
 const config = require(process.cwd() + '/gencli.json');
-const CLI = require('./src/cli');
-const FileGen = require('./src/file-gen');
+const CLI = require('./src/cli/cli');
+const FileGen = require('./src/file-gen/file-gen');
 
 const greet = () => {
-    console.log(
-        chalk.green(
-            figlet.textSync(config.cliName || 'file-gen-cli', {
-                horizontalLayout: "default",
-                verticalLayout: "default"
-            })
-        )
-    );
-    console.log(
-        chalk.white.bgBlue.bold(`By Vincent Guillemette - github/guignol1981`)
-    );
+    console.log(chalk.green(figlet.textSync('file-gen-cli', {})));
 };
 
-const done = () => {
-    console.log(
-        chalk.white.bgBlue.bold(`Done!`)
-    );
+const goodbye = () => {
+    console.log(chalk.white.bgBlue.bold(`Done!`));
 };
 
 const run = async () => {
@@ -38,7 +26,7 @@ const run = async () => {
 
     fileGen.generate(entityConfig, { singular: instanceNameSingular, plural: instanceNamePlural });
 
-    done();
+    goodbye();
 };
 
 run();

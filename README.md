@@ -27,7 +27,6 @@ A CLI that generate files for your application
 ### General config
 |  Param |  definition  |  default | required | possible values |
 |-|-|-|-|-|
-|cliName|the name of your cli|file-gen-cli|false|
 |fileExtension|the extension of the generated files (can be override individually)||false|
 |fileNameCase|the case of the files name|kebab|false|kebab, camel, pascal, constant, snake|
 |folderNameCase|the case of the folders name|kebab|false|kebab, camel, pascal, constant, snake|
