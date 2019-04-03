@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
+const FileGen = require('./file-gen');
 
-module.exports = class CLI {
+class CLI {
     constructor(config) {
         this.configGuard(config);
 
@@ -41,4 +42,17 @@ module.exports = class CLI {
             .then(answer => answer['PLURAL']);
     }
 };
+
+module.exports = (async function () {
+    const config = require('../example/gencli.json');
+    const cli = new CLI(config);
+    const fileGen = new FileGen(config);
+
+    const entityName = await cli.queryEntity();
+    const instanceNameSingular = await cli.queryInstanceNameSingular();
+    const instanceNamePlural = await cli.queryInstanceNamePlural();
+    const entityConfig = config.entityConfigs.find(ec => ec.name === entityName);
+
+    fileGen.generate(entityConfig, { singular: instanceNameSingular, plural: instanceNamePlural });
+})();
 
