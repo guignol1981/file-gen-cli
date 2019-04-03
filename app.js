@@ -3,8 +3,8 @@
 const figlet = require('figlet');
 const chalk = require('chalk');
 const config = require(process.cwd() + '/gencli.json');
-const CLI = require('./src/cli/cli');
-const FileGen = require('./src/file-gen/file-gen');
+const CLI = require('./src/cli');
+const FileGen = require('./src/file-gen');
 
 const greet = () => {
     console.log(chalk.green(figlet.textSync('file-gen-cli', {})));
