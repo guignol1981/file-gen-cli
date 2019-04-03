@@ -77,6 +77,7 @@ A CLI that generate files for your application
 ## TODO
 
  - Optional file extension
+ - Filter cli answer
 
 ## Contributing
 
