@@ -22,7 +22,7 @@ A CLI that generate files for your application
  - Run from project root with
  	>  `npm run file-gen-cli`
 
-## Documentation (gencli.json)
+## Documentation (for gencli.json)
 
 ### General config
 |  Param |  definition  |  default | required | possible values |
