@@ -1,4 +1,4 @@
-import { HttpService } from '@ulaval/modul-components/dist/utils/http/http';
+import { HttpService } from '@lib/dist/utils/http/http';
 import { AxiosPromise } from 'axios';
 import { {{SINGULAR_PASCAL_CASE}} } from './{{SINGULAR_KEBAB_CASE}}';
 
