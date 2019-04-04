@@ -56,22 +56,22 @@ A CLI that generate files for your application
 |{{SINGULAR_CAMEL_CASE}}|instance name camel case|
 |{{SINGULAR_CONSTANT_CASE}}|instance name constant case|
 |{{SINGULAR_KEBAB_CASE}}|instance name kebab case|
-|{{SINGULAR_SNAKE_CASE}}|instance name kebab case|
+|{{SINGULAR_SNAKE_CASE}}|instance name snake case|
 |{{PLURAL_PASCAL_CASE}}|instance plural name pascal case|
 |{{PLURAL_CAMEL_CASE}}|instance plural name came case|
 |{{PLURAL_CONSTANT_CASE}}|instance plural name constant case|
 |{{PLURAL_KEBAB_CASE}}|instance plural name kebab case|
-|{{PLURAL_SNAKE_CASE}}|instance plural name kebab case|
+|{{PLURAL_SNAKE_CASE}}|instance plural name snake case|
 |{{PREFIXED_SINGULAR_PASCAL_CASE}}|instance prefixed name pascal case|
 |{{PREFIXED_SINGULAR_CAMEL_CASE}}|instance prefixed name camel case|
 |{{PREFIXED_SINGULAR_CONSTANT_CASE}}|instance prefixed name constant case|
 |{{PREFIXED_SINGULAR_KEBAB_CASE}}|instance prefixed name kebab case|
-|{{PREFIXED_SINGULAR_SNAKE_CASE}}|instance prefixed name kebab case|
+|{{PREFIXED_SINGULAR_SNAKE_CASE}}|instance prefixed name snake case|
 |{{PREFIXED_PLURAL_PASCAL_CASE}}|instance prefixed plural name pascal case|
 |{{PREFIXED_PLURAL_CAMEL_CASE}}|instance prefixed plural name camel case|
 |{{PREFIXED_PLURAL_CONSTANT_CASE}}|instance prefixed plural name constant case|
 |{{PREFIXED_PLURAL_KEBAB_CASE}}|instance prefixed plural name kebab case|
-|{{PREFIXED_PLURAL_SNAKE_CASE}}|instance prefixed plural name kebab case|
+|{{PREFIXED_PLURAL_SNAKE_CASE}}|instance prefixed plural name snake case|
 
 ## TODO
 
