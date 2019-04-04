@@ -2,8 +2,8 @@
     "name": "file-gen-cli",
     "version": "1.1.2",
     "description": "A CLI that generate files for your application",
-    "main": "index.js",
-    "bin": "./index.js",
+    "main": "app.js",
+    "bin": "./app.js",
     "scripts": {
         "start": "node app.js",
         "test": "jest"
