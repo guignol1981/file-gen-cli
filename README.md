@@ -19,7 +19,7 @@ A CLI that generate files for your application
 	>  gencli.json example [here](https://github.com/guignol1981/file-gen-cli/blob/master/example/gencli.json)
  - Add this script in your **package.json**
  	>  "file-gen-cli": "./node_modules/.bin/file-gen-cli"
- - Run from project root with
+ - Run with
  	>  `npm run file-gen-cli`
 
 ## Documentation (for gencli.json)
