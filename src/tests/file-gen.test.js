@@ -1,5 +1,5 @@
 const fs = require('fs');
-const FileGen = require('../file-gen');
+const fileGen = require('../file-gen');
 const changeCase = require('change-case');
 const config = require('./gencli.json');
 const rimraf = require('rimraf');
@@ -14,50 +14,46 @@ changeCase.snake.mockImplementation(() => 'test');
 
 describe('when we construct a new file gen', () => {
     it('should be an error if there is no config passed to the file gen', () => {
-        const fileGen = () => new FileGen();
-
-        expect(fileGen).toThrowError();
+        const test = () => fileGen();
+        expect(test).toThrowError();
     });
 
     it('should be an error if there is no folderNameCase configured', () => {
-        let fileGen = () => new FileGen({
+        const test = () => fileGen({
             fileNameCase: 'test',
             templatePath: 'test'
         });
 
-        expect(fileGen).toThrowError();
+        expect(test).toThrowError();
     });
 
     it('should be an error if there is no fileNameCase configured', () => {
-        let fileGen = () => new FileGen({
+        const test = () => fileGen({
             folderNameCase: 'test',
             templatePath: 'test'
         });
 
-        expect(fileGen).toThrowError();
+        expect(test).toThrowError();
     });
 
     it('should be an error if there is no templatePath configured', () => {
-        let fileGen = () => new FileGen({
+        const test = () => fileGen({
             folderNameCase: 'test',
             fileNameCase: 'test'
         });
 
-        expect(fileGen).toThrowError();
+        expect(test).toThrowError();
     });
 });
 
 describe('when we generate a new entity instance', () => {
-    let fileGen;
-
     beforeEach(() => {
         changeCase.camel.mockClear();
         changeCase.pascal.mockClear();
         changeCase.kebab.mockClear();
         changeCase.constant.mockClear();
 
-        fileGen = new FileGen(config);
-        fileGen.generate(config.entityConfigs[0], { singular: 'test', plural: 'tests' });
+        fileGen(config, config.entityConfigs[0], { singular: 'test', plural: 'tests' }, () => { });
     });
 
     it('should create folder if it does not exist', () => {
