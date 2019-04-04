@@ -1,16 +1,23 @@
-const CLI = require('../cli');
+const cli = require('../cli');
 
 describe('when we construct a new cli', () => {
-    it('should be an error if there is no config passed to the cli', () => {
-        const test = () => new CLI();
+    it('should be an error if there is no config passed to the cli', async () => {
+        const test = async () => await cli();
 
-        expect(test).toThrowError();
+        try {
+            await test();
+        } catch (e) {
+            expect(e).toBeTruthy();
+        }
     });
 
-    it('should be an error if there is no entities configured', () => {
-        let test = () => new CLI({});
+    it('should be an error if there is no entities configured', async () => {
+        const test = async () => await cli({});
 
-        expect(test).toThrowError();
+        try {
+            await test();
+        } catch (e) {
+            expect(e).toBeTruthy();
+        }
     });
 });
-

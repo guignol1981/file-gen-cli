@@ -3,8 +3,8 @@
 const figlet = require('figlet');
 const chalk = require('chalk');
 const config = require(process.cwd() + '/gencli.json');
-const CLI = require('./src/cli');
-const FileGen = require('./src/file-gen');
+const cli = require('./src/cli');
+const fileGen = require('./src/file-gen');
 
 const greet = () => {
     console.log(chalk.green(figlet.textSync('file-gen-cli', {})));
@@ -17,16 +17,12 @@ const goodbye = () => {
 const run = async () => {
     greet();
 
-    const fileGen = new FileGen(config);
-    const cli = new CLI(config);
-    const entityName = await cli.queryEntity();
-    const instanceNameSingular = await cli.queryInstanceNameSingular();
-    const instanceNamePlural = await cli.queryInstanceNamePlural();
-    const entityConfig = config.entityConfigs.find(ec => ec.name === entityName);
-
-    fileGen.generate(entityConfig, { singular: instanceNameSingular, plural: instanceNamePlural });
-
-    goodbye();
+    cli(config, (entityName, instanceName) => fileGen(
+        config,
+        config.entityConfigs.find(ec => ec.name === entityName),
+        instanceName,
+        () => goodbye()
+    ));
 };
 
 run();
