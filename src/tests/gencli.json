@@ -1,0 +1,19 @@
+{
+    "fileExtension": "ts",
+    "fileNameCase": "kebab",
+    "folderNameCase": "kebab",
+    "templatePath": "/src/tests/cli-templates",
+    "entityConfigs": [
+        {
+            "name": "module",
+            "path": "/src/tests/test-entity",
+            "prefix": "test",
+            "fileConfigs": [
+                {
+                    "name": "*-test",
+                    "template": "test.txt"
+                }
+            ]
+        }
+    ]
+}
