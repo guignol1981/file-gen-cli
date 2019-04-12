@@ -9,7 +9,7 @@ const FileGen = require('./src/file-gen');
 const greet = () => {
     console.log(
         chalk.green(
-            figlet.textSync(config.cliName || 'file-gen-cli', {
+            figlet.textSync('file-gen-cli', {
                 horizontalLayout: "default",
                 verticalLayout: "default"
             })
