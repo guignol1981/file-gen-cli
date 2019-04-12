@@ -28,7 +28,6 @@ A CLI that generate files for your application
 |  Param |  definition  |  default | required | possible values |
 |-|-|-|-|-|
 |cliName|the name of your cli|file-gen-cli|false|
-|fileExtension|the extension of the generated files (can be override individually)||false|
 |fileNameCase|the case of the files name|kebab|false|kebab, camel, pascal, constant, snake|
 |folderNameCase|the case of the folders name|kebab|false|kebab, camel, pascal, constant, snake|
 |templatePath|the path to the files template (from project root)||true||
@@ -47,36 +46,35 @@ A CLI that generate files for your application
 |-|-|-|-|-|
 |name|the file name (the `*` symbole is replaced by the entity instance name)||true||
 |template|the template name for the file (no template will generate an empty file)||false||
-|extension|override the file extension of the general config|the fileExtension value|false||
 
 ### Templates
 
 |keyword|replaced with|
 |-|-|
-|{{SINGULAR_PASCAL_CASE}}|instance name pascal case|
-|{{SINGULAR_CAMEL_CASE}}|instance name camel case|
-|{{SINGULAR_CONSTANT_CASE}}|instance name constant case|
-|{{SINGULAR_KEBAB_CASE}}|instance name kebab case|
-|{{SINGULAR_SNAKE_CASE}}|instance name kebab case|
-|{{PLURAL_PASCAL_CASE}}|instance plural name pascal case|
-|{{PLURAL_CAMEL_CASE}}|instance plural name came case|
-|{{PLURAL_CONSTANT_CASE}}|instance plural name constant case|
-|{{PLURAL_KEBAB_CASE}}|instance plural name kebab case|
-|{{PLURAL_SNAKE_CASE}}|instance plural name kebab case|
-|{{PREFIXED_SINGULAR_PASCAL_CASE}}|instance prefixed name pascal case|
-|{{PREFIXED_SINGULAR_CAMEL_CASE}}|instance prefixed name camel case|
-|{{PREFIXED_SINGULAR_CONSTANT_CASE}}|instance prefixed name constant case|
-|{{PREFIXED_SINGULAR_KEBAB_CASE}}|instance prefixed name kebab case|
-|{{PREFIXED_SINGULAR_SNAKE_CASE}}|instance prefixed name kebab case|
-|{{PREFIXED_PLURAL_PASCAL_CASE}}|instance prefixed plural name pascal case|
-|{{PREFIXED_PLURAL_CAMEL_CASE}}|instance prefixed plural name camel case|
-|{{PREFIXED_PLURAL_CONSTANT_CASE}}|instance prefixed plural name constant case|
-|{{PREFIXED_PLURAL_KEBAB_CASE}}|instance prefixed plural name kebab case|
-|{{PREFIXED_PLURAL_SNAKE_CASE}}|instance prefixed plural name kebab case|
+|{{SINGULAR_PASCAL}}|instance name pascal case|
+|{{SINGULAR_CAMEL}}|instance name camel case|
+|{{SINGULAR_CONSTANT}}|instance name constant case|
+|{{SINGULAR_KEBAB}}|instance name kebab case|
+|{{SINGULAR_SNAKE}}|instance name kebab case|
+|{{PLURAL_PASCAL}}|instance plural name pascal case|
+|{{PLURAL_CAMEL}}|instance plural name came case|
+|{{PLURAL_CONSTANT}}|instance plural name constant case|
+|{{PLURAL_KEBAB}}|instance plural name kebab case|
+|{{PLURAL_SNAKE}}|instance plural name kebab case|
+|{{PREFIXED_SINGULAR_PASCAL}}|instance prefixed name pascal case|
+|{{PREFIXED_SINGULAR_CAMEL}}|instance prefixed name camel case|
+|{{PREFIXED_SINGULAR_CONSTANT}}|instance prefixed name constant case|
+|{{PREFIXED_SINGULAR_KEBAB}}|instance prefixed name kebab case|
+|{{PREFIXED_SINGULAR_SNAKE}}|instance prefixed name kebab case|
+|{{PREFIXED_PLURAL_PASCAL}}|instance prefixed plural name pascal case|
+|{{PREFIXED_PLURAL_CAMEL}}|instance prefixed plural name camel case|
+|{{PREFIXED_PLURAL_CONSTANT}}|instance prefixed plural name constant case|
+|{{PREFIXED_PLURAL_KEBAB}}|instance prefixed plural name kebab case|
+|{{PREFIXED_PLURAL_SNAKE}}|instance prefixed plural name kebab case|
 
 ## TODO
 
- - Optional file extension
+- support nested folders
 
 ## Contributing
 

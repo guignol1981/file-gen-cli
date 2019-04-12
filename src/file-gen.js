@@ -7,7 +7,6 @@ module.exports = class FileGen {
 
         this.folderNameCase = config.folderNameCase;
         this.fileNameCase = config.fileNameCase;
-        this.fileExtension = config.fileExtension;
         this.templatePath = config.templatePath;
     }
 
@@ -34,14 +33,14 @@ module.exports = class FileGen {
         if (fs.existsSync(dirName)) {
             return;
         }
+
         fs.mkdirSync(dirName);
     }
 
     getFilePath(dirName, fileConfig, instanceName) {
-        const fileExtension = fileConfig.extension || this.fileExtension;
         const fileName = fileConfig.name.replace('*', `${changeCase[this.fileNameCase](instanceName.singular)}`);
 
-        return `${dirName}/${fileName}.${fileExtension}`;
+        return `${dirName}/${fileName}`;
     }
 
     createFile(fileConfig, instanceName) {
@@ -63,16 +62,16 @@ module.exports = class FileGen {
 
     replaceTemplatePlaceholders(contents, instanceName) {
         contents = contents
-            .replace(/{{SINGULAR_PASCAL_CASE}}/gi, changeCase.pascalCase(instanceName.singular))
-            .replace(/{{SINGULAR_CAMEL_CASE}}/gi, changeCase.camelCase(instanceName.singular))
-            .replace(/{{SINGULAR_CONSTANT_CASE}}/gi, changeCase.constantCase(instanceName.singular))
-            .replace(/{{SINGULAR_KEBAB_CASE}}/gi, changeCase.kebabCase(instanceName.singular))
-            .replace(/{{SINGULAR_SNAKE_CASE}}/gi, changeCase.snakeCase(instanceName.singular))
-            .replace(/{{PLURAL_PASCAL_CASE}}/gi, changeCase.pascalCase(instanceName.plural))
-            .replace(/{{PLURAL_CAMEL_CASE}}/gi, changeCase.camelCase(instanceName.plural))
-            .replace(/{{PLURAL_CONSTANT_CASE}}/gi, changeCase.constantCase(instanceName.plural))
-            .replace(/{{PLURAL_KEBAB_CASE}}/gi, changeCase.kebabCase(instanceName.plural))
-            .replace(/{{PLURAL_SNAKE_CASE}}/gi, changeCase.snakeCase(instanceName.plural));
+            .replace(/{{SINGULAR_PASCAL}}/gi, changeCase.pascalCase(instanceName.singular))
+            .replace(/{{SINGULAR_CAMEL}}/gi, changeCase.camelCase(instanceName.singular))
+            .replace(/{{SINGULAR_CONSTANT}}/gi, changeCase.constantCase(instanceName.singular))
+            .replace(/{{SINGULAR_KEBAB}}/gi, changeCase.kebabCase(instanceName.singular))
+            .replace(/{{SINGULAR_SNAKE}}/gi, changeCase.snakeCase(instanceName.singular))
+            .replace(/{{PLURAL_PASCAL}}/gi, changeCase.pascalCase(instanceName.plural))
+            .replace(/{{PLURAL_CAMEL}}/gi, changeCase.camelCase(instanceName.plural))
+            .replace(/{{PLURAL_CONSTANT}}/gi, changeCase.constantCase(instanceName.plural))
+            .replace(/{{PLURAL_KEBAB}}/gi, changeCase.kebabCase(instanceName.plural))
+            .replace(/{{PLURAL_SNAKE}}/gi, changeCase.snakeCase(instanceName.plural));
 
         return this.replacePrefixedTemplatePlaceholders(contents, instanceName);
     }
@@ -81,15 +80,15 @@ module.exports = class FileGen {
         const prefixedSingular = `${instanceName.prefix} ${instanceName.singular}`;
         const prefixedPlural = `${instanceName.prefix} ${instanceName.plural}`;
 
-        return contents.replace(/{{PREFIXED_SINGULAR_PASCAL_CASE}}/gi, changeCase.pascalCase(prefixedSingular))
-            .replace(/{{PREFIXED_SINGULAR_CAMEL_CASE}}/gi, changeCase.camelCase(prefixedSingular))
-            .replace(/{{PREFIXED_SINGULAR_CONSTANT_CASE}}/gi, changeCase.constantCase(prefixedSingular))
-            .replace(/{{PREFIXED_SINGULAR_KEBAB_CASE}}/gi, changeCase.kebabCase(prefixedSingular))
-            .replace(/{{PREFIXED_SINGULAR_SNAKE_CASE}}/gi, changeCase.snakeCase(prefixedSingular))
-            .replace(/{{PREFIXED_PLURAL_PASCAL_CASE}}/gi, changeCase.pascalCase(prefixedPlural))
-            .replace(/{{PREFIXED_PLURAL_CAMEL_CASE}}/gi, changeCase.camelCase(prefixedPlural))
-            .replace(/{{PREFIXED_PLURAL_CONSTANT_CASE}}/gi, changeCase.constantCase(prefixedPlural))
-            .replace(/{{PREFIXED_PLURAL_KEBAB_CASE}}/gi, changeCase.kebabCase(prefixedPlural))
-            .replace(/{{PREFIXED_PLURAL_SNAKE_CASE}}/gi, changeCase.snakeCase(prefixedPlural));
+        return contents.replace(/{{PREFIXED_SINGULAR_PASCAL}}/gi, changeCase.pascalCase(prefixedSingular))
+            .replace(/{{PREFIXED_SINGULAR_CAMEL}}/gi, changeCase.camelCase(prefixedSingular))
+            .replace(/{{PREFIXED_SINGULAR_CONSTANT}}/gi, changeCase.constantCase(prefixedSingular))
+            .replace(/{{PREFIXED_SINGULAR_KEBAB}}/gi, changeCase.kebabCase(prefixedSingular))
+            .replace(/{{PREFIXED_SINGULAR_SNAKE}}/gi, changeCase.snakeCase(prefixedSingular))
+            .replace(/{{PREFIXED_PLURAL_PASCAL}}/gi, changeCase.pascalCase(prefixedPlural))
+            .replace(/{{PREFIXED_PLURAL_CAMEL}}/gi, changeCase.camelCase(prefixedPlural))
+            .replace(/{{PREFIXED_PLURAL_CONSTANT}}/gi, changeCase.constantCase(prefixedPlural))
+            .replace(/{{PREFIXED_PLURAL_KEBAB}}/gi, changeCase.kebabCase(prefixedPlural))
+            .replace(/{{PREFIXED_PLURAL_SNAKE}}/gi, changeCase.snakeCase(prefixedPlural));
     }
 };

@@ -1,12 +1,12 @@
 import { MainState } from '@/store/main-state';
-import { {{SINGULAR_PASCAL_CASE}} } from './{{SINGULAR_KEBAB_CASE}}';
-import { {{SINGULAR_PASCAL_CASE}}Service } from './{{SINGULAR_KEBAB_CASE}}-service';
+import { {{SINGULAR_PASCAL}} } from './{{SINGULAR_KEBAB}}';
+import { {{SINGULAR_PASCAL}}Service } from './{{SINGULAR_KEBAB}}-service';
 
-export class {{SINGULAR_PASCAL_CASE}}State {
-    public {{PLURAL_CAMEL_CASE}}: {{SINGULAR_PASCAL_CASE}}[] = [];
-    public {{SINGULAR_CAMEL_CASE}}Service: {{SINGULAR_PASCAL_CASE}}Service;
+export class {{SINGULAR_PASCAL}}State {
+    public {{PLURAL_CAMEL}}: {{SINGULAR_PASCAL}}[] = [];
+    public {{SINGULAR_CAMEL}}Service: {{SINGULAR_PASCAL}}Service;
 
     constructor(mainState: MainState) {
-        this.{{SINGULAR_CAMEL_CASE}}Service = new {{SINGULAR_PASCAL_CASE}}Service(mainState.http, 'https://dev.spla.ulaval.ca:444/test');
+        this.{{SINGULAR_CAMEL}}Service = new {{SINGULAR_PASCAL}}Service(mainState.http, 'https://dev.spla.ulaval.ca:444/test');
     }
 }

@@ -1,6 +1,5 @@
 {
     "cliName": "myapp-cli",
-    "fileExtension": "ts",
     "fileNameCase": "kebab",
     "folderNameCase": "kebab",
     "templatePath": "/src/meta/cli-templates",
@@ -11,19 +10,19 @@
             "path": "/src/store/modules",
             "fileConfigs": [
                 {
-                    "name": "*",
+                    "name": "*.ts",
                     "template": "model.txt"
                 },
                 {
-                    "name": "*-service",
+                    "name": "*-service.ts",
                     "template": "service.txt"
                 },
                 {
-                    "name": "*-module",
+                    "name": "*-module.ts",
                     "template": "module.txt"
                 },
                 {
-                    "name": "*-state",
+                    "name": "*-state.ts",
                     "template": "state.txt"
                 }
             ]
@@ -34,20 +33,18 @@
             "path": "/src/vues",
             "fileConfigs": [
                 {
-                    "name": "myapp-*",
+                    "name": "myapp-*.ts",
                     "template": "vue.txt"
                 },
                 {
-                    "name": "myapp-*",
-                    "extension": "html"
+                    "name": "myapp-*.html"
                 },
                 {
-                    "name": "myapp-*",
-                    "extension": "scss",
+                    "name": "myapp-*.scss",
                     "template": "style.txt"
                 },
                 {
-                    "name": "myapp-*.spec",
+                    "name": "myapp-*.spec.ts",
                     "template": "vue-spec.txt"
                 }
             ]

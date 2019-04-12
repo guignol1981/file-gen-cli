@@ -21,8 +21,7 @@ describe('when we construct a new file gen', () => {
 
     it('should be an error if there is no folderNameCase configured', () => {
         let fileGen = () => new FileGen({
-            fileNameCase: 'test',
-            templatePath: 'test'
+            fileNameCase: 'test'
         });
 
         expect(fileGen).toThrowError();
@@ -30,17 +29,7 @@ describe('when we construct a new file gen', () => {
 
     it('should be an error if there is no fileNameCase configured', () => {
         let fileGen = () => new FileGen({
-            folderNameCase: 'test',
-            templatePath: 'test'
-        });
-
-        expect(fileGen).toThrowError();
-    });
-
-    it('should be an error if there is no templatePath configured', () => {
-        let fileGen = () => new FileGen({
-            folderNameCase: 'test',
-            fileNameCase: 'test'
+            folderNameCase: 'test'
         });
 
         expect(fileGen).toThrowError();

@@ -1,1 +1,1 @@
-<div>{{SINGULAR_PASCAL_CASE}}</div>
+<div>{{SINGULAR_PASCAL}}</div>
