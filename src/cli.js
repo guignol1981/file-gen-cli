@@ -41,4 +41,3 @@ module.exports = class CLI {
             .then(answer => answer['PLURAL']);
     }
 };
-
