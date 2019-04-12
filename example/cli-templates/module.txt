@@ -1,6 +1,5 @@
 import { MainState } from '@/store/main-state';
 import { Module } from 'vuex';
-<<<<<<< HEAD
 import { {{SINGULAR_PASCAL}} } from './{{SINGULAR_KEBAB}}';
 import { {{SINGULAR_PASCAL}}State } from './{{SINGULAR_KEBAB}}-state';
 
@@ -17,24 +16,6 @@ const storeModuleFactory: (main: MainState) => Module<{{SINGULAR_PASCAL}}State, 
         mutations: {
             {{PLURAL_CAMEL}}: (context, payload) => {
                 context.{{PLURAL_CAMEL}} = payload;
-=======
-import { {{SINGULAR_PASCAL_CASE}} } from './{{SINGULAR_KEBAB_CASE}}';
-import { {{SINGULAR_PASCAL_CASE}}State } from './{{SINGULAR_KEBAB_CASE}}-state';
-
-const storeModuleFactory: (main: MainState) => Module<{{SINGULAR_PASCAL_CASE}}State, MainState> = (main) => {
-    return {
-        namespaced: true,
-
-        state: new {{SINGULAR_PASCAL_CASE}}State(main),
-
-        getters: {
-            {{PLURAL_CAMEL_CASE}}: (context) => context.{{PLURAL_CAMEL_CASE}}
-        },
-
-        mutations: {
-            {{PLURAL_CAMEL_CASE}}: (context, payload) => {
-                context.{{PLURAL_CAMEL_CASE}} = payload;
->>>>>>> c51c16de3de6fe3c422adbadf8e050bc1f0dfbe2
             }
         },
 
