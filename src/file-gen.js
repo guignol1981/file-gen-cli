@@ -2,12 +2,14 @@ const changeCase = require('change-case');
 const fs = require('fs');
 
 module.exports = class FileGen {
-    constructor(config) {
+    constructor(config, entityConfig, instanceName) {
         this.configGuard(config);
 
         this.folderNameCase = config.folderNameCase;
         this.fileNameCase = config.fileNameCase;
         this.templatePath = config.templatePath;
+
+        this.generate(entityConfig, instanceName);
     }
 
     configGuard(config) {
@@ -61,8 +63,7 @@ module.exports = class FileGen {
     }
 
     replaceTemplatePlaceholders(contents, instanceName) {
-        contents = contents
-            .replace(/{{SINGULAR_PASCAL}}/gi, changeCase.pascalCase(instanceName.singular))
+        contents = contents.replace(/{{SINGULAR_PASCAL}}/gi, changeCase.pascalCase(instanceName.singular))
             .replace(/{{SINGULAR_CAMEL}}/gi, changeCase.camelCase(instanceName.singular))
             .replace(/{{SINGULAR_CONSTANT}}/gi, changeCase.constantCase(instanceName.singular))
             .replace(/{{SINGULAR_KEBAB}}/gi, changeCase.kebabCase(instanceName.singular))

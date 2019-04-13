@@ -45,8 +45,7 @@ describe('when we generate a new entity instance', () => {
         changeCase.kebab.mockClear();
         changeCase.constant.mockClear();
 
-        fileGen = new FileGen(config);
-        fileGen.generate(config.entityConfigs[0], { singular: 'test', plural: 'tests' });
+        fileGen = new FileGen(config, config.entityConfigs[0], { singular: 'test', plural: 'tests' });
     });
 
     it('should create folder if it does not exist', () => {

@@ -1,16 +1,25 @@
 const inquirer = require('inquirer');
 
 module.exports = class CLI {
-    constructor(config) {
+    constructor(config, cb) {
         this.configGuard(config);
 
         this.entityConfigs = config.entityConfigs;
+
     }
 
     configGuard(config) {
         if (!config || !Array.isArray(config.entityConfigs) || config.entityConfigs.length === 0) {
             throw Error('there is a problem with your configuration, please refer to documentation');
         }
+    }
+
+    async init(cb) {
+        const entityName = await this.queryEntity();
+        const instanceNameSingular = await this.queryInstanceNameSingular();
+        const instanceNamePlural = await this.queryInstanceNamePlural();
+
+        cb(entityName, { singular: instanceNameSingular.trim(), plural: instanceNamePlural.trim() });
     }
 
     queryEntity() {
