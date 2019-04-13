@@ -5,7 +5,6 @@ module.exports = class CLI {
         this.configGuard(config);
 
         this.entityConfigs = config.entityConfigs;
-
     }
 
     configGuard(config) {
