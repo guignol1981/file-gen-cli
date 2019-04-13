@@ -6,7 +6,7 @@
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# file-gen-cli
+# Speed up with
 
 ![Logo](/src/assets/logo.PNG?raw=true "Logo")
 
