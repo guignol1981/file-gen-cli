@@ -8,6 +8,8 @@
 
 # file-gen-cli
 
+![Alt text](src/assets/logo.jpg?raw=true "Logo")
+
 A CLI that generate files for your application
 
 ## Installation
