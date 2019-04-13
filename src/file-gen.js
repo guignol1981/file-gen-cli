@@ -1,5 +1,6 @@
 const changeCase = require('change-case');
 const fs = require('fs');
+const path = require('path');
 
 module.exports = class FileGen {
     constructor(config, entityConfig, instanceName) {
@@ -20,7 +21,7 @@ module.exports = class FileGen {
 
     generate(entityConfig, instanceName) {
         entityConfig.fileConfigs.forEach(fileConfig => {
-            const dirName = `${process.cwd()}${entityConfig.path}/${changeCase[this.folderNameCase](instanceName.singular)}`;
+            const dirName = `${process.cwd()}/${entityConfig.path}/${changeCase[this.folderNameCase](instanceName.singular)}`;
 
             this.createDir(dirName);
 
@@ -32,11 +33,11 @@ module.exports = class FileGen {
     }
 
     createDir(dirName) {
-        if (fs.existsSync(dirName)) {
+        if (fs.existsSync(path.normalize(dirName))) {
             return;
         }
 
-        fs.mkdirSync(dirName);
+        fs.mkdirSync(path.normalize(dirName));
     }
 
     getFilePath(dirName, fileConfig, instanceName) {
@@ -47,17 +48,17 @@ module.exports = class FileGen {
 
     createFile(fileConfig, instanceName) {
         if (!fileConfig.template) {
-            fs.openSync(fileConfig.path, 'w');
+            fs.openSync(path.normalize(fileConfig.path), 'w');
             return;
         }
 
         const contents = this.getTemplateContent(fileConfig, instanceName);
 
-        fs.writeFileSync(fileConfig.path, contents);
+        fs.writeFileSync(path.normalize(fileConfig.path), contents);
     }
 
     getTemplateContent(fileConfig, instanceName) {
-        let contents = fs.readFileSync(`${process.cwd()}${this.templatePath}/${fileConfig.template}`, 'utf8');
+        let contents = fs.readFileSync(path.normalize(`${process.cwd()}/${this.templatePath}/${fileConfig.template}`), 'utf8');
 
         return this.replaceTemplatePlaceholders(contents, instanceName);
     }

@@ -37,15 +37,13 @@ describe('when we construct a new file gen', () => {
 });
 
 describe('when we generate a new entity instance', () => {
-    let fileGen;
-
     beforeEach(() => {
         changeCase.camel.mockClear();
         changeCase.pascal.mockClear();
         changeCase.kebab.mockClear();
         changeCase.constant.mockClear();
 
-        fileGen = new FileGen(config, config.entityConfigs[0], { singular: 'test', plural: 'tests' });
+        new FileGen(config, config.entityConfigs[0], { singular: 'test', plural: 'tests' });
     });
 
     it('should create folder if it does not exist', () => {
