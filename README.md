@@ -8,7 +8,7 @@
 
 # file-gen-cli
 
-![Logo](/src/assets/logo.jpg?raw=true "Logo")
+![Logo](/src/assets/logo.PNG?raw=true "Logo")
 
 A CLI that generate files for your application
 
