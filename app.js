@@ -10,8 +10,7 @@ const greet = () => {
     console.log(
         chalk.green(
             figlet.textSync('file-gen-cli', {
-                horizontalLayout: "default",
-                verticalLayout: "default"
+                font: "speed"
             })
         )
     );
