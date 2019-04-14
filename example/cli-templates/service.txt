@@ -3,9 +3,6 @@ import { AxiosPromise } from 'axios';
 import { {{SINGULAR_PASCAL}} } from './{{SINGULAR_KEBAB}}';
 
 export class {{SINGULAR_PASCAL}}Service extends RESTService<{{SINGULAR_PASCAL}}> {
-    readonly nomRessource: string = '{{SINGULAR_SNAKE}}';
-    readonly nomRessourcePluriel: string = '{{PLURAL_SNAKE}}';
-
     protected createNewRessource(): {{SINGULAR_PASCAL}} {
         return new {{SINGULAR_PASCAL}}();
     }
