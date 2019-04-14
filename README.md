@@ -75,7 +75,8 @@ A CLI that generate files for your application
 
 ## TODO
 
-- support nested folders
+- Support nested folders
+- Automaticaly generate gencli.json from existing project
 
 ## Contributing
 
