@@ -73,7 +73,7 @@ A CLI that generate files for your application
 |{{PREFIXED_PLURAL_KEBAB}}|instance prefixed plural name kebab case|
 |{{PREFIXED_PLURAL_SNAKE}}|instance prefixed plural name kebab case|
 
-## TODO
+## TODO (feel free to help)
 
 - Support nested folders
 - Automaticaly generate gencli.json from existing project
