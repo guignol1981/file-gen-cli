@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 
 module.exports = class CLI {
-    constructor(config, cb) {
+    constructor(config) {
         this.configGuard(config);
 
         this.entityConfigs = config.entityConfigs;
