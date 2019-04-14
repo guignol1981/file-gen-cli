@@ -1,7 +1,4 @@
 export class {{SINGULAR_PASCAL}} extends RESTRessource<{{SINGULAR_PASCAL}}> {
-    public readonly name: string = '{{SINGULAR_KEBAB}}';
-    public readonly pluralName: string = '{{PLURAL_KEBAB}}';
-
     public deserialize(raw: any): Offre {
         // TODO config ressource from raw
         return new {{SINGULAR_PASCAL}}();
