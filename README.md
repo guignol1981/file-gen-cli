@@ -84,6 +84,10 @@ A CLI that generate files for your application
 ## Contributing
 
  - Feel free to suggest features, submit issues or update the documentation!
+ 
+## Contributors
+ 
+ - Contribute and add your name here! 
 
 ## License
 
