@@ -76,7 +76,6 @@ A CLI that generate files for your application
 ## TODO (feel free to help)
 
 - Support nested folders
-- Option to automaticaly generate gencli.json from existing project 
 - Generate gencli.json from cli menu 
 - "Exit" cli option
 - Convert to Typescript
