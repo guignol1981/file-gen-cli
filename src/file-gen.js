@@ -1,7 +1,6 @@
 const changeCase = require('change-case');
 const fs = require('fs');
 const path = require('path');
-const request = require('request');
 
 module.exports = class FileGen {
     constructor(projectId, config, entityConfig, instanceName, firestore, storage) {

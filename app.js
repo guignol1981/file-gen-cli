@@ -6,7 +6,6 @@ const chalk = require('chalk');
 const CLI = require('./src/cli');
 const FileGen = require('./src/file-gen');
 const firebase = require('firebase');
-const fs = require('fs');
 const path = require('path');
 const gcloudStorate = require('@google-cloud/storage');
 const storage = new gcloudStorate.Storage({
