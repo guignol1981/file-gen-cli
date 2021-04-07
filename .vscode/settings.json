@@ -1,27 +1,14 @@
-// Placez vos paramètres dans ce fichier pour remplacer les paramètres par défaut et les paramètres utilisateur.
 {
-    "editor.detectIndentation": false,
-    "files.trimTrailingWhitespace": true,
-    "editor.tabSize": 4,
-    "files.insertFinalNewline": true,
-    "stylelint.enable": true,
-    "css.validate": false,
-    "less.validate": false,
-    "scss.validate": false,
-    "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
-    "typescript.preferences.quoteStyle": "single",
     "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": true
+    "editor.quickSuggestions": {
+        "strings": true
     },
-    "files.exclude": {
-        "**/.github/": true,
+    "tailwindCSS.includeLanguages": {
+        "plaintext": "html"
     },
-    "search.exclude": {
-        "**/reports/": true,
-        "package-lock.json": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "html.format.wrapLineLength": 0,
-    "html.format.wrapAttributes": "force-aligned",
-    "typescript.updateImportsOnFileMove.enabled": "prompt"
+    "files.eol": "\n"
 }
