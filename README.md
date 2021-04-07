@@ -37,7 +37,7 @@ A CLI that generate files for your application
 |path|the path where to create the entity instances (from project root), the path will be normalized||true||
 |prefix|the entity prefix that can occur in different files template||false||
 |fileConfigs|an array of file configs||true||
-|singularOnly|if there is only singular name instances||false||
+|singularOnly|if there is only singular name instances|false|false||
 
 ### File config
 |  Param |  definition  |  default | required | possible values |
