@@ -8,4 +8,5 @@ module.exports = {
     vueIndentScriptAndStyle: false,
     quoteProps: 'consistent',
     htmlWhitespaceSensitivity: 'ignore',
+    endOfLine: 'lf',
 };

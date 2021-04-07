@@ -83,8 +83,6 @@ module.exports = class FileGen {
     }
 
     async getTemplateContent(fileConfig, instanceName) {
-        // console.log(template);
-        // return '';
         const bucketFile = await this.storage
             .bucket('fil-gen-cli.appspot.com')
             .file(`${this.projectId}/${fileConfig.template}`);

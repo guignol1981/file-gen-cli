@@ -26,6 +26,23 @@ const firebaseConfig = {
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const firestore = firebaseApp.firestore();
+const greet = () => {
+    console.log(
+        chalk.green(
+            figlet.textSync('file-gen-cli', {
+                font: 'speed',
+            })
+        )
+    );
+    console.log(
+        chalk.white.bgBlue.bold(`By Vincent Guillemette - github/guignol1981`)
+    );
+};
+
+const goodbye = () => {
+    console.log(chalk.white.bgBlue.bold(`Done!`));
+    process.exit();
+};
 
 if (args[0] === 'register') {
     const config = require(path.join(process.cwd(), 'gencli.json'));
@@ -42,27 +59,8 @@ if (args[0] === 'register') {
         });
     });
 
-    console.log(chalk.white.bgBlue.bold(`Done!`));
+    goodbye();
 } else {
-    const greet = () => {
-        console.log(
-            chalk.green(
-                figlet.textSync('file-gen-cli', {
-                    font: 'speed',
-                })
-            )
-        );
-        console.log(
-            chalk.white.bgBlue.bold(
-                `By Vincent Guillemette - github/guignol1981`
-            )
-        );
-    };
-
-    const goodbye = () => {
-        console.log(chalk.white.bgBlue.bold(`Done!`));
-    };
-
     const run = async () => {
         greet();
 
