@@ -16,7 +16,12 @@ module.exports = class CLI {
     async init(cb) {
         const entityName = await this.queryEntity();
         const instanceNameSingular = await this.queryInstanceNameSingular();
-        const instanceNamePlural = await this.queryInstanceNamePlural();
+
+        let instanceNamePlural = '';
+
+        if (!this.entityConfigs.find(ec => ec.name === entityName).singularOnly) {
+            instanceNamePlural = await this.queryInstanceNamePlural();
+        }
 
         cb(entityName, { singular: instanceNameSingular.trim(), plural: instanceNamePlural.trim() });
     }

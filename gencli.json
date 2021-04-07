@@ -7,8 +7,8 @@
         {
             "name": "module",
             "path": "/src/tests/test-entity",
+            "singularOnly": true,
             "prefix": "test",
-            "singularOnly": false,
             "fileConfigs": [
                 {
                     "name": "*-test.ts",

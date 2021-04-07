@@ -8,7 +8,7 @@
 
 # Speed up with
 
-![Logo](/src/assets/logo.PNG?raw=true "Logo")     
+![Logo](/src/assets/logo.PNG?raw=true "Logo")
 
 A CLI that generate files for your application
 
@@ -37,6 +37,7 @@ A CLI that generate files for your application
 |path|the path where to create the entity instances (from project root), the path will be normalized||true||
 |prefix|the entity prefix that can occur in different files template||false||
 |fileConfigs|an array of file configs||true||
+|singularOnly|if there is only singular name instances||false||
 
 ### File config
 |  Param |  definition  |  default | required | possible values |
@@ -72,17 +73,17 @@ A CLI that generate files for your application
 ## TODO (feel free to help)
 
 - Support nested folders
-- Generate gencli.json from cli menu 
+- Generate gencli.json from cli menu
 - "Exit" cli option
 - Convert to Typescript
 
 ## Contributing
 
  - Feel free to suggest features, submit issues or update the documentation!
- 
+
 ## Contributors
- 
- - Contribute and add your name here! 
+
+ - Contribute and add your name here!
 
 ## License
 
