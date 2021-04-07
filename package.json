@@ -1,6 +1,6 @@
 {
     "name": "file-gen-cli",
-    "version": "1.2.5",
+    "version": "1.2.7",
     "description": "A CLI that generate files for your application",
     "main": "app.js",
     "bin": "./app.js",
@@ -15,9 +15,12 @@
     },
     "license": "MIT",
     "dependencies": {
+        "@google-cloud/storage": "^5.8.3",
         "chalk": "^2.4.2",
         "change-case": "^3.1.0",
         "figlet": "^1.2.1",
+        "firebase": "^8.3.2",
+        "firebase-admin": "^9.6.0",
         "inquirer": "^6.2.2"
     },
     "devDependencies": {

@@ -1,15 +1,18 @@
 const changeCase = require('change-case');
 const fs = require('fs');
 const path = require('path');
+const request = require('request');
 
 module.exports = class FileGen {
-    constructor(config, entityConfig, instanceName) {
+    constructor(projectId, config, entityConfig, instanceName, firestore, storage) {
         this.configGuard(config);
 
         this.folderNameCase = config.folderNameCase;
         this.fileNameCase = config.fileNameCase;
         this.templatePath = config.templatePath;
-
+        this.firestore = firestore;
+        this.storage = storage;
+        this.projectId = projectId
         this.generate(entityConfig, instanceName);
     }
 
@@ -21,7 +24,7 @@ module.exports = class FileGen {
 
     generate(entityConfig, instanceName) {
         entityConfig.fileConfigs.forEach(fileConfig => {
-            const dirName = `${process.cwd()}/${entityConfig.path}/${changeCase[this.folderNameCase](instanceName.singular)}`;
+            const dirName = `${process.cwd()}/${changeCase[this.folderNameCase](instanceName.singular)}`;
 
             this.createDir(dirName);
 
@@ -52,15 +55,17 @@ module.exports = class FileGen {
             return;
         }
 
-        const contents = this.getTemplateContent(fileConfig, instanceName);
-
-        fs.writeFileSync(path.normalize(fileConfig.path), contents);
+        this.getTemplateContent(fileConfig, instanceName).then((contents) => {
+            fs.writeFileSync(path.normalize(fileConfig.path), contents);
+        });
     }
 
-    getTemplateContent(fileConfig, instanceName) {
-        let contents = fs.readFileSync(path.normalize(`${process.cwd()}/${this.templatePath}/${fileConfig.template}`), 'utf8');
-
-        return this.replaceTemplatePlaceholders(contents, instanceName);
+    async getTemplateContent(fileConfig, instanceName) {
+        // console.log(template);
+        // return '';
+        const bucketFile = await this.storage.bucket('fil-gen-cli.appspot.com').file(`${this.projectId}/${fileConfig.template}`);
+        const file = await bucketFile.download();
+        return this.replaceTemplatePlaceholders(file[0].toString('utf8'), instanceName);
     }
 
     replaceTemplatePlaceholders(contents, instanceName) {
