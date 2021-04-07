@@ -8,9 +8,10 @@ const FileGen = require('./src/file-gen');
 const firebase = require('firebase');
 const path = require('path');
 const gcloudStorate = require('@google-cloud/storage');
+
 const storage = new gcloudStorate.Storage({
     projectId: 'fil-gen-cli',
-    keyFilename: './gcloud.json'
+    keyFilename: path.join(__dirname, 'gcloud.json')
 });
 
 const firebaseConfig = {
