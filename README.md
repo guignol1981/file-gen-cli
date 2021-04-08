@@ -36,6 +36,7 @@ When the register is done, and you use file-gen-cli with you config name paramet
 
 | Param          | definition                                                                      | default | required | possible values                       |
 | -------------- | ------------------------------------------------------------------------------- | ------- | -------- | ------------------------------------- |
+| accountKey     | the service account key, needed to create new configs                           |         | true     | contact me to get a key               |
 | fileNameCase   | the case of the files name                                                      | kebab   | false    | kebab, camel, pascal, constant, snake |
 | folderNameCase | the case of the folders name                                                    | kebab   | false    | kebab, camel, pascal, constant, snake |
 | entityConfigs  | an array of entity configs                                                      |         | true     |                                       |
