@@ -24,6 +24,12 @@ A CLI that generate files for your application
 
 ## How it works
 
+When you use the register parameters, file-gen-cli will lookup in the folder it's being executed for a gencli.json file. It will then save in the cloud this config associeted with the config name. It will then look the each file configs of each entity configs then will look for each of the template files name in the folder it's being executed. It will then store those file in the cloud associated with the config name.
+
+**you can rewrite the config the same way**
+
+When the register is done, and you use file-gen-cli with you config name parameter, it will then generate the files accordingly to you cloud config.
+
 ## Documentation (gencli.json)
 
 ### General config
