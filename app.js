@@ -54,13 +54,9 @@ try {
         const snap = await firestore.collection('configs').doc(args[0]).get();
         const config = snap.data();
 
-        // let cli = new CLI(config);
-        // let { entityName, instanceName } = await cli.init();
-        entityName = 'module';
-        instanceName = {
-            singular: 'test',
-            plural: 'test',
-        };
+        let cli = new CLI(config);
+        let { entityName, instanceName } = await cli.init();
+
         const fileGen = new FileGen(
             args[0],
             config,
