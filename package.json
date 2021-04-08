@@ -1,6 +1,6 @@
 {
     "name": "file-gen-cli",
-    "version": "1.2.22",
+    "version": "1.2.23",
     "description": "A CLI that generate files for your application",
     "main": "app.js",
     "bin": "./app.js",
