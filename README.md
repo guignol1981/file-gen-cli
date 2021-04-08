@@ -17,8 +17,8 @@ A CLI that generate files for your application
     > `yarn global add file-gen-cli`
 -   Add a folder to hold your templates and gencli.json files
     > files templates examples [here](https://github.com/guignol1981/file-gen-cli/tree/master/example/cli-templates)
--   Register your cli model with
-    > `yarn global add file-gen-cli`
+-   Register your cli config with
+    > `file-gen-cli register myConfig`
 
 ## How it works
 
