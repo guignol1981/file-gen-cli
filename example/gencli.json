@@ -1,12 +1,10 @@
 {
     "fileNameCase": "kebab",
     "folderNameCase": "kebab",
-    "templatePath": "/src/meta/cli-templates",
     "entityConfigs": [
         {
             "name": "module",
             "prefix": "myapp",
-            "path": "/src/store/modules",
             "fileConfigs": [
                 {
                     "name": "*.ts",
@@ -29,7 +27,6 @@
         {
             "name": "component",
             "prefix": "myapp",
-            "path": "/src/vues",
             "fileConfigs": [
                 {
                     "name": "myapp-*.ts",
