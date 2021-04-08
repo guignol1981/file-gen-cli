@@ -1,6 +1,9 @@
 {
     "fileNameCase": "kebab",
     "folderNameCase": "kebab",
+    "accountKey": {
+        // a valid service account key, this is to prevent publishing a write unrestricted key (ask me one!)
+    },
     "entityConfigs": [
         {
             "name": "module",
