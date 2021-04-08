@@ -19,6 +19,8 @@ A CLI that generate files for your application
     > files templates examples [here](https://github.com/guignol1981/file-gen-cli/tree/master/example/cli-templates)
 -   Register your cli config with
     > `file-gen-cli register myConfig`
+-   Use your config with
+    > `file-gen-cli myConfig`
 
 ## How it works
 
