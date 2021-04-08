@@ -5,7 +5,6 @@
     "entityConfigs": [
         {
             "name": "module",
-            "path": "/src/tests/test-entity",
             "prefix": "test",
             "singularOnly": false,
             "fileConfigs": [
