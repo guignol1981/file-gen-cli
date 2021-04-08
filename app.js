@@ -8,12 +8,6 @@ const FileGen = require('./src/file-gen');
 const firebase = require('firebase');
 const path = require('path');
 const gcloudStorate = require('@google-cloud/storage');
-
-const storage = new gcloudStorate.Storage({
-    projectId: 'fil-gen-cli',
-    keyFilename: path.join(__dirname, 'gcloud.json'),
-});
-
 const firebaseConfig = {
     apiKey: 'AIzaSyBKZn5TmFbPudGEN-1iKDiC6sHvZLxxW6k',
     authDomain: 'fil-gen-cli.firebaseapp.com',
@@ -24,66 +18,93 @@ const firebaseConfig = {
     measurementId: 'G-RYXZ5393XZ',
 };
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const firestore = firebaseApp.firestore();
-const greet = () => {
-    console.log(
-        chalk.green(
-            figlet.textSync('file-gen-cli', {
-                font: 'speed',
-            })
-        )
-    );
-    console.log(
-        chalk.white.bgBlue.bold(`By Vincent Guillemette - github/guignol1981`)
-    );
-};
-
-const goodbye = () => {
-    console.log(chalk.white.bgBlue.bold(`Done!`));
-    process.exit();
-};
-
-if (args[0] === 'register') {
-    const config = require(path.join(process.cwd(), 'gencli.json'));
-
-    firestore.collection('configs').doc(args[1]).set(config);
-
-    config.entityConfigs.forEach((ec) => {
-        ec.fileConfigs.forEach((fc) => {
-            storage
-                .bucket('fil-gen-cli.appspot.com')
-                .upload(path.join(process.cwd(), fc.template), {
-                    destination: `${args[1]}/${fc.template}`,
-                });
-        });
+try {
+    const storage = new gcloudStorate.Storage({
+        projectId: 'fil-gen-cli',
+        keyFilename: path.join(__dirname, 'gcloud.json'),
     });
+    const firebaseApp = firebase.initializeApp(firebaseConfig);
+    const firestore = firebaseApp.firestore();
 
-    goodbye();
-} else {
-    const run = async () => {
-        greet();
+    const registerConfig = async () => {
+        const config = require(path.join(process.cwd(), 'gencli.json'));
 
+        firestore.collection('configs').doc(args[1]).set(config);
+
+        await storage
+            .bucket('fil-gen-cli.appspot.com')
+            .deleteFiles({ prefix: args[1] });
+
+        await Promise.all(
+            config.entityConfigs.map(async (ec) => {
+                return await Promise.all(
+                    ec.fileConfigs.map(async (fc) => {
+                        return await storage
+                            .bucket('fil-gen-cli.appspot.com')
+                            .upload(path.join(process.cwd(), fc.template), {
+                                destination: `${args[1]}/${fc.template}`,
+                            });
+                    })
+                );
+            })
+        );
+    };
+
+    const generateFiles = async () => {
         const snap = await firestore.collection('configs').doc(args[0]).get();
         const config = snap.data();
 
         let cli = new CLI(config);
+        let { entityName, instanceName } = await cli.init();
 
-        await cli.init((entityName, instanceName) => {
-            new FileGen(
-                args[0],
-                config,
-                (entityConfig = config.entityConfigs.find(
-                    (ec) => ec.name === entityName
-                )),
-                instanceName,
-                firestore,
-                storage
-            );
-        });
+        const fileGen = new FileGen(
+            args[0],
+            config,
+            config.entityConfigs[0],
+            (entityConfig = config.entityConfigs.find(
+                (ec) => ec.name === entityName
+            )),
+            instanceName,
+            firestore,
+            storage
+        );
+
+        return await fileGen.generate();
+    };
+
+    const greet = () => {
+        console.log(
+            chalk.green(
+                figlet.textSync('file-gen-cli', {
+                    font: 'speed',
+                })
+            )
+        );
+        console.log(
+            chalk.white.bgBlue.bold(
+                `By Vincent Guillemette - github/guignol1981`
+            )
+        );
+    };
+
+    const goodbye = () => {
+        console.log(chalk.white.bgBlue.bold(`Done!`));
+        process.exit();
+    };
+
+    const run = async () => {
+        greet();
+
+        if (args[0] === 'register') {
+            await registerConfig();
+        } else {
+            await generateFiles();
+        }
 
         goodbye();
     };
 
     run();
+} catch (e) {
+    console.log(e);
 }

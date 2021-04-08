@@ -19,7 +19,7 @@ module.exports = class CLI {
         }
     }
 
-    async init(cb) {
+    async init() {
         const entityName = await this.queryEntity();
         const instanceNameSingular = await this.queryInstanceNameSingular();
 
@@ -32,9 +32,12 @@ module.exports = class CLI {
             instanceNamePlural = await this.queryInstanceNamePlural();
         }
 
-        cb(entityName, {
-            singular: instanceNameSingular.trim(),
-            plural: instanceNamePlural.trim(),
+        return Promise.resolve({
+            entityName,
+            instanceName: {
+                singular: instanceNameSingular.trim(),
+                plural: instanceNamePlural.trim(),
+            },
         });
     }
 

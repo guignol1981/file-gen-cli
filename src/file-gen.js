@@ -15,43 +15,36 @@ module.exports = class FileGen {
 
         this.folderNameCase = config.folderNameCase;
         this.fileNameCase = config.fileNameCase;
-        this.templatePath = config.templatePath;
         this.firestore = firestore;
         this.storage = storage;
         this.projectId = projectId;
-        this.generate(entityConfig, instanceName);
+        this.entityConfig = entityConfig;
+        this.instanceName = instanceName;
     }
 
     configGuard(config) {
-        if (
-            !config ||
-            !config.folderNameCase ||
-            !config.fileNameCase ||
-            !config.templatePath
-        ) {
+        if (!config || !config.folderNameCase || !config.fileNameCase) {
             throw Error(
                 'there is a problem with your configuration, please refer to documentation'
             );
         }
     }
 
-    generate(entityConfig, instanceName) {
-        entityConfig.fileConfigs.forEach((fileConfig) => {
-            const dirName = `${process.cwd()}/${changeCase[this.folderNameCase](
-                instanceName.singular
-            )}`;
+    async generate() {
+        return await Promise.all(
+            this.entityConfig.fileConfigs.map(async (fileConfig) => {
+                const dirName = `${process.cwd()}/${changeCase[
+                    this.folderNameCase
+                ](this.instanceName.singular)}`;
 
-            this.createDir(dirName);
+                this.createDir(dirName);
 
-            instanceName.prefix = entityConfig.prefix;
-            fileConfig.path = this.getFilePath(
-                dirName,
-                fileConfig,
-                instanceName
-            );
+                this.instanceName.prefix = this.entityConfig.prefix;
+                fileConfig.path = this.getFilePath(dirName, fileConfig);
 
-            this.createFile(fileConfig, instanceName);
-        });
+                return await this.createFile(fileConfig);
+            })
+        );
     }
 
     createDir(dirName) {
@@ -62,86 +55,89 @@ module.exports = class FileGen {
         fs.mkdirSync(path.normalize(dirName));
     }
 
-    getFilePath(dirName, fileConfig, instanceName) {
+    getFilePath(dirName, fileConfig) {
         const fileName = fileConfig.name.replace(
             '*',
-            `${changeCase[this.fileNameCase](instanceName.singular)}`
+            `${changeCase[this.fileNameCase](this.instanceName.singular)}`
         );
 
         return `${dirName}/${fileName}`;
     }
 
-    createFile(fileConfig, instanceName) {
+    async createFile(fileConfig) {
         if (!fileConfig.template) {
             fs.openSync(path.normalize(fileConfig.path), 'w');
-            return;
+            return Promise.resolve();
         }
 
-        this.getTemplateContent(fileConfig, instanceName).then((contents) => {
-            fs.writeFileSync(path.normalize(fileConfig.path), contents);
-        });
+        const contents = await this.getTemplateContent(fileConfig);
+        fs.writeFileSync(path.normalize(fileConfig.path), contents);
+        return Promise.resolve();
     }
 
-    async getTemplateContent(fileConfig, instanceName) {
-        const bucketFile = await this.storage
-            .bucket('fil-gen-cli.appspot.com')
-            .file(`${this.projectId}/${fileConfig.template}`);
-        const file = await bucketFile.download();
-        return this.replaceTemplatePlaceholders(
-            file[0].toString('utf8'),
-            instanceName
-        );
+    async getTemplateContent(fileConfig) {
+        try {
+            const bucketFile = await this.storage
+                .bucket('fil-gen-cli.appspot.com')
+                .file(`${this.projectId}/${fileConfig.template}`);
+
+            const file = await bucketFile.download();
+
+            return this.replaceTemplatePlaceholders(file[0].toString('utf8'));
+        } catch (e) {
+            console.log(e);
+        }
     }
 
-    replaceTemplatePlaceholders(contents, instanceName) {
+    replaceTemplatePlaceholders(contents) {
         contents = contents
             .replace(
                 /{{SINGULAR_PASCAL}}/gi,
-                changeCase.pascalCase(instanceName.singular)
+                changeCase.pascalCase(this.instanceName.singular)
             )
             .replace(
                 /{{SINGULAR_CAMEL}}/gi,
-                changeCase.camelCase(instanceName.singular)
+                changeCase.camelCase(this.instanceName.singular)
             )
             .replace(
                 /{{SINGULAR_CONSTANT}}/gi,
-                changeCase.constantCase(instanceName.singular)
+                changeCase.constantCase(this.instanceName.singular)
             )
             .replace(
                 /{{SINGULAR_KEBAB}}/gi,
-                changeCase.kebabCase(instanceName.singular)
+                changeCase.kebabCase(this.instanceName.singular)
             )
             .replace(
                 /{{SINGULAR_SNAKE}}/gi,
-                changeCase.snakeCase(instanceName.singular)
+                changeCase.snakeCase(this.instanceName.singular)
             )
             .replace(
                 /{{PLURAL_PASCAL}}/gi,
-                changeCase.pascalCase(instanceName.plural)
+                changeCase.pascalCase(this.instanceName.plural)
             )
             .replace(
                 /{{PLURAL_CAMEL}}/gi,
-                changeCase.camelCase(instanceName.plural)
+                changeCase.camelCase(this.instanceName.plural)
             )
             .replace(
                 /{{PLURAL_CONSTANT}}/gi,
-                changeCase.constantCase(instanceName.plural)
+                changeCase.constantCase(this.instanceName.plural)
             )
             .replace(
                 /{{PLURAL_KEBAB}}/gi,
-                changeCase.kebabCase(instanceName.plural)
+                changeCase.kebabCase(this.instanceName.plural)
             )
             .replace(
                 /{{PLURAL_SNAKE}}/gi,
-                changeCase.snakeCase(instanceName.plural)
+                changeCase.snakeCase(this.instanceName.plural)
             );
 
-        return this.replacePrefixedTemplatePlaceholders(contents, instanceName);
+        return this.replacePrefixedTemplatePlaceholders(contents);
     }
 
     replacePrefixedTemplatePlaceholders(contents, instanceName) {
-        const prefixedSingular = `${instanceName.prefix} ${instanceName.singular}`;
-        const prefixedPlural = `${instanceName.prefix} ${instanceName.plural}`;
+        const prefixedSingular = `${this.instanceName.prefix} ${this.instanceName.singular}`;
+        const prefixedPlural = `${this.instanceName.prefix} ${this.instanceName.plural}`;
 
         return contents
             .replace(
