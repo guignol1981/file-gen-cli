@@ -2,7 +2,6 @@
     "cliName": "my-app-cli",
     "fileNameCase": "kebab",
     "folderNameCase": "kebab",
-    "templatePath": "src/tests/cli-templates",
     "entityConfigs": [
         {
             "name": "module",
