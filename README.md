@@ -38,7 +38,6 @@ When the register is done, and you use file-gen-cli with you config name paramet
 | -------------- | ------------------------------------------------------------------------------- | ------- | -------- | ------------------------------------- |
 | fileNameCase   | the case of the files name                                                      | kebab   | false    | kebab, camel, pascal, constant, snake |
 | folderNameCase | the case of the folders name                                                    | kebab   | false    | kebab, camel, pascal, constant, snake |
-| templatePath   | the path to the files template (from project root), the path will be normalized | ./      | false    |                                       |
 | entityConfigs  | an array of entity configs                                                      |         | true     |                                       |
 
 ### Entity config
@@ -46,7 +45,6 @@ When the register is done, and you use file-gen-cli with you config name paramet
 | Param        | definition                                                                                     | default | required | possible values |
 | ------------ | ---------------------------------------------------------------------------------------------- | ------- | -------- | --------------- |
 | name         | the entity name                                                                                |         | true     |                 |
-| path         | the path where to create the entity instances (from project root), the path will be normalized | ./      | false    |                 |
 | prefix       | the entity prefix that can occur in different files template                                   |         | false    |                 |
 | fileConfigs  | an array of file configs                                                                       |         | true     |                 |
 | singularOnly | if there is only singular name instances                                                       | false   | false    |                 |
