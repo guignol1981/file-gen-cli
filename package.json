@@ -15,6 +15,7 @@
     },
     "license": "MIT",
     "dependencies": {
+        "File": "^0.10.2",
         "chalk": "^2.4.2",
         "change-case": "^3.1.0",
         "figlet": "^1.2.1",
