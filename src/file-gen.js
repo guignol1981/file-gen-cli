@@ -2,8 +2,6 @@ const changeCase = require('change-case');
 const fs = require('fs');
 const path = require('path');
 const request = require('request');
-const File = require('File');
-const FileReader = require('file-reader');
 
 module.exports = class FileGen {
     constructor(configName, config, entityConfig, instanceName) {
