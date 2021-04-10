@@ -3,6 +3,7 @@
     "fileNameCase": "kebab",
     "folderNameCase": "kebab",
     "templatePath": "src/tests/cli-templates",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZXN0IjoibGFsYSIsImlhdCI6MTYxODA1NDQ4MH0.-gKTZ-ngXQYRUdk56DMLIBbJmPY6eeSHM9RVcGlXkE0",
     "entityConfigs": [
         {
             "name": "module",

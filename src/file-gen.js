@@ -1,23 +1,17 @@
 const changeCase = require('change-case');
 const fs = require('fs');
 const path = require('path');
+const request = require('request');
+const File = require('File');
+const FileReader = require('file-reader');
 
 module.exports = class FileGen {
-    constructor(
-        projectId,
-        config,
-        entityConfig,
-        instanceName,
-        firestore,
-        storage
-    ) {
+    constructor(configName, config, entityConfig, instanceName) {
         this.configGuard(config);
 
         this.folderNameCase = config.folderNameCase;
         this.fileNameCase = config.fileNameCase;
-        this.firestore = firestore;
-        this.storage = storage;
-        this.projectId = projectId;
+        this.configName = configName;
         this.entityConfig = entityConfig;
         this.instanceName = instanceName;
     }
@@ -71,22 +65,25 @@ module.exports = class FileGen {
         }
 
         const contents = await this.getTemplateContent(fileConfig);
+
         fs.writeFileSync(path.normalize(fileConfig.path), contents);
+
         return Promise.resolve();
     }
 
     async getTemplateContent(fileConfig) {
-        try {
-            const bucketFile = await this.storage
-                .bucket('fil-gen-cli.appspot.com')
-                .file(`${this.projectId}/${fileConfig.template}`);
-
-            const file = await bucketFile.download();
-
-            return this.replaceTemplatePlaceholders(file[0].toString('utf8'));
-        } catch (e) {
-            console.log(e);
-        }
+        return new Promise((resolve) => {
+            request.get(
+                `https://file-gen-cli.herokuapp.com/configs/${this.configName}/files/${fileConfig.template}`,
+                (err, req, body) => {
+                    resolve(
+                        this.replaceTemplatePlaceholders(
+                            JSON.parse(body).content
+                        )
+                    );
+                }
+            );
+        });
     }
 
     replaceTemplatePlaceholders(contents) {
