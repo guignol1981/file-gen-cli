@@ -104,7 +104,7 @@ try {
 
     const goodbye = () => {
         console.log(chalk.white.bgBlue.bold(`Done!`));
-        // process.exit();
+        process.exit();
     };
 
     const run = async () => {
