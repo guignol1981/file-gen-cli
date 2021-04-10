@@ -13,45 +13,51 @@ const FormData = require('form-data');
 try {
     const registerConfig = async () => {
         const config = require(path.join(process.cwd(), 'gencli.json'));
-        await request.post('https://file-gen-cli.herokuapp.com/configs', {
-            json: true,
-            body: config,
-            auth: {
-                bearer: config.token,
-            },
-        });
 
-        await Promise.all(
-            config.entityConfigs.map(async (ec) => {
+        request.post(
+            'https://file-gen-cli.herokuapp.com/configs',
+            {
+                json: true,
+                body: config,
+                auth: {
+                    bearer: config.token,
+                },
+            },
+            async () => {
                 await Promise.all(
-                    ec.fileConfigs.map(async (fc) => {
-                        const formData = new FormData();
-                        formData.append(
-                            'file',
-                            fs.createReadStream(
-                                path.join(process.cwd(), fc.template)
-                            ),
-                            {
-                                filename: fc.template,
-                            }
-                        );
-                        await request.post(
-                            `https://file-gen-cli.herokuapp.com/configs/${config.cliName}/files`,
-                            {
-                                headers: {
-                                    'Content-Type':
-                                        'multipart/form-data; boundary=' +
-                                        formData.getBoundary(),
-                                },
-                                body: formData,
-                                auth: {
-                                    bearer: config.token,
-                                },
-                            }
+                    config.entityConfigs.map(async (ec) => {
+                        await Promise.all(
+                            ec.fileConfigs.map(async (fc) => {
+                                const formData = new FormData();
+                                formData.append(
+                                    'file',
+                                    fs.createReadStream(
+                                        path.join(process.cwd(), fc.template)
+                                    ),
+                                    {
+                                        filename: fc.template,
+                                    }
+                                );
+
+                                await request.post(
+                                    `https://file-gen-cli.herokuapp.com/configs/${config.cliName}/files`,
+                                    {
+                                        headers: {
+                                            'Content-Type':
+                                                'multipart/form-data; boundary=' +
+                                                formData.getBoundary(),
+                                        },
+                                        body: formData,
+                                        auth: {
+                                            bearer: config.token,
+                                        },
+                                    }
+                                );
+                            })
                         );
                     })
                 );
-            })
+            }
         );
     };
 
@@ -98,7 +104,7 @@ try {
 
     const goodbye = () => {
         console.log(chalk.white.bgBlue.bold(`Done!`));
-        process.exit();
+        // process.exit();
     };
 
     const run = async () => {
