@@ -3,7 +3,7 @@ const FormData = require('form-data');
 const fs = require('fs');
 const path = require('path');
 
-exports.registor = async (config, endpoint) => {
+module.exports = async (config, endpoint) => {
     const res = await fetch(`${endpoint}/configs`, {
         method: 'POST',
         body: JSON.stringify(config),

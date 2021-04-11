@@ -4,10 +4,10 @@ const args = process.argv.slice(2);
 const figlet = require('figlet');
 const chalk = require('chalk');
 const CLI = require('./src/cli');
-const registrator = require('./src/registrator');
 const generator = require('./src/generator');
 const path = require('path');
 const fetch = require('node-fetch');
+const registrator = require('./src/registrator');
 // const endpoint = 'http://localhost:3000';
 const endpoint = 'https://file-gen-cli.herokuapp.com';
 
