@@ -14,17 +14,18 @@ A CLI that generate files for your application
 ## Getting started
 
 -   install globaly with
-    > `yarn global add file-gen-cli`
+    > `npm i file-gen-cli@latest -g`
 -   Add a folder to hold your templates and gencli.json files
     > files templates examples [here](https://github.com/guignol1981/file-gen-cli/tree/master/example/cli-templates)
+    > see bellow for gencli configuration [here](https://github.com/guignol1981/file-gen-cli/tree/master/example/gencli.json)
 -   Register your cli config with
-    > `file-gen-cli register myConfig`
+    > `file-gen-cli register`
 -   Use your config with
     > `file-gen-cli myConfig`
 
 ## How it works
 
-When you use the register parameters, file-gen-cli will lookup in the folder it's being executed for a gencli.json file. It will then save in the cloud this config associeted with the config name. It will then look the each file configs of each entity configs then will look for each of the template files name in the folder it's being executed. It will then store those file in the cloud associated with the config name.
+When you use the register parameters, file-gen-cli will lookup in the folder it's being executed for a gencli.json file. It will then save in the cloud this config associeted with the cliName parameters. It will then look each file configs of each entity configs then will look for each of the templates files name in the folder it's being executed. It will then store those file in the cloud associated with the cli name.
 
 **you can rewrite the config the same way**
 

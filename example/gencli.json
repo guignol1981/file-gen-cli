@@ -1,9 +1,8 @@
 {
+    "cliName": "example-cli",
     "fileNameCase": "kebab",
     "folderNameCase": "kebab",
-    "accountKey": {
-        "data": "a valid service account key, this is to prevent publishing a write unrestricted key (ask me one!)"
-    },
+    "token": "as me one!",
     "entityConfigs": [
         {
             "name": "module",
