@@ -35,13 +35,14 @@ When the register is done, and you use file-gen-cli with you config name paramet
 
 ### General config
 
-| Param          | definition                   | default | required | possible values                       |
-| -------------- | ---------------------------- | ------- | -------- | ------------------------------------- |
-| cliName        | new name of your config      |         | true     | a string with no spaces               |
-| token          | a jwt to generate new config |         | true     | contact me to get a token             |
-| fileNameCase   | the case of the files name   | kebab   | false    | kebab, camel, pascal, constant, snake |
-| folderNameCase | the case of the folders name | kebab   | false    | kebab, camel, pascal, constant, snake |
-| entityConfigs  | an array of entity configs   |         | true     | see Entity config bellow              |
+| Param          | definition                            | default | required | possible values                       |
+| -------------- | ------------------------------------- | ------- | -------- | ------------------------------------- |
+| cliName        | name of your cli                      |         | true     | a string with no spaces               |
+| description    | desc of your config (for public list) |         | true     |                                       |
+| token          | a jwt to generate new config          |         | true     | contact me to get a token             |
+| fileNameCase   | the case of the files name            | kebab   | false    | kebab, camel, pascal, constant, snake |
+| folderNameCase | the case of the folders name          | kebab   | false    | kebab, camel, pascal, constant, snake |
+| entityConfigs  | an array of entity configs            |         | true     | see Entity config bellow              |
 
 ### Entity config
 

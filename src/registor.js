@@ -4,20 +4,31 @@ const fs = require('fs');
 const path = require('path');
 
 exports.registor = async (config, endpoint) => {
-    await fetch(`${endpoint}/configs`, {
+    const res = await fetch(`${endpoint}/configs`, {
         method: 'POST',
         body: JSON.stringify(config),
         headers: {
             'Authorization': `Bearer ${config.token}`,
             'Content-Type': 'application/json',
         },
-    });
+    }).then((res) => res.json());
+
+    console.log(res.msg);
+
+    if (!res.ok) {
+        return;
+    }
 
     await Promise.all(
         config.entityConfigs.map(async (ec) => {
             await Promise.all(
                 ec.fileConfigs.map(async (fc) => {
+                    if (!fs.existsSync(path.join(process.cwd(), fc.template))) {
+                        throw `couldn't find ${fc.template} template, add the template in this folder and try again!`;
+                    }
+
                     const formData = new FormData();
+
                     formData.append(
                         'file',
                         fs.createReadStream(
@@ -27,17 +38,21 @@ exports.registor = async (config, endpoint) => {
                             filename: fc.template,
                         }
                     );
+                    const res = await fetch(
+                        `${endpoint}/configs/${config.cliName}/files`,
+                        {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': `Bearer ${config.token}`,
+                                'Content-Type':
+                                    'multipart/form-data; boundary=' +
+                                    formData.getBoundary(),
+                            },
+                            body: formData,
+                        }
+                    ).then((res) => res.json());
 
-                    await fetch(`${endpoint}/configs/${config.cliName}/files`, {
-                        method: 'POST',
-                        headers: {
-                            'Authorization': `Bearer ${config.token}`,
-                            'Content-Type':
-                                'multipart/form-data; boundary=' +
-                                formData.getBoundary(),
-                        },
-                        body: formData,
-                    });
+                    console.log(res.msg);
                 })
             );
         })

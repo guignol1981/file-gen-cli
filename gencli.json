@@ -1,5 +1,6 @@
 {
     "cliName": "test-cli",
+    "description": "a cli for test purpose",
     "fileNameCase": "kebab",
     "folderNameCase": "kebab",
     "templatePath": "src/tests/cli-templates",

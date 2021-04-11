@@ -67,6 +67,16 @@ try {
 
         if (args[0] === 'register') {
             await registerConfig();
+        } else if (args[0] === 'list') {
+            const { configs } = await fetch(`${endpoint}/configs`).then((res) =>
+                res.json()
+            );
+            configs.forEach((c) => {
+                console.log('name: ', c.name);
+                console.log('description: ', c.description);
+                console.log('author: ', c.author);
+                console.log('----');
+            });
         } else {
             await generateFiles();
         }
