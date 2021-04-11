@@ -6,94 +6,40 @@ const chalk = require('chalk');
 const CLI = require('./src/cli');
 const FileGen = require('./src/file-gen');
 const path = require('path');
-const request = require('request');
-const fs = require('fs');
-const FormData = require('form-data');
-const endpoint = 'https://file-gen-cli.herokuapp.com/';
+const fetch = require('node-fetch');
+const { registor } = require('./src/registor');
+const endpoint = 'http://localhost:3000';
+// const endpoint = 'https://file-gen-cli.herokuapp.com';
 
 try {
     const registerConfig = async () => {
-        const config = require(path.join(process.cwd(), 'gencli.json'));
-        return new Promise((resolve) => {
-            request.post(
-                endpoint + 'configs',
-                {
-                    json: true,
-                    body: config,
-                    auth: {
-                        bearer: config.token,
-                    },
-                },
-                async () => {
-                    await Promise.all(
-                        config.entityConfigs.map(async (ec) => {
-                            await Promise.all(
-                                ec.fileConfigs.map(async (fc) => {
-                                    const formData = new FormData();
-                                    formData.append(
-                                        'file',
-                                        fs.createReadStream(
-                                            path.join(
-                                                process.cwd(),
-                                                fc.template
-                                            )
-                                        ),
-                                        {
-                                            filename: fc.template,
-                                        }
-                                    );
-                                    return new Promise((resolve) => {
-                                        request.post(
-                                            `${endpoint}configs/${config.cliName}/files`,
-                                            {
-                                                headers: {
-                                                    'Content-Type':
-                                                        'multipart/form-data; boundary=' +
-                                                        formData.getBoundary(),
-                                                },
-                                                body: formData,
-                                                auth: {
-                                                    bearer: config.token,
-                                                },
-                                            },
-                                            () => resolve()
-                                        );
-                                    });
-                                })
-                            );
-                        })
-                    );
-                    resolve();
-                }
-            );
-        });
+        try {
+            const config = require(path.join(process.cwd(), 'gencli.json'));
+            await registor(config, endpoint);
+        } catch (e) {
+            console.log(e);
+        }
     };
 
-    const generateFiles = () => {
-        return new Promise((resolve) => {
-            request.get(
-                `${endpoint}configs/${args[0]}`,
-                async (err, req, body) => {
-                    const config = JSON.parse(body).config;
+    const generateFiles = async () => {
+        const { config } = await fetch(
+            `${endpoint}/configs/${args[0]}`
+        ).then((res) => res.json());
 
-                    let cli = new CLI(config);
-                    let { entityName, instanceName } = await cli.init();
+        let cli = new CLI(config);
 
-                    const fileGen = new FileGen(
-                        args[0],
-                        config,
-                        (entityConfig = config.entityConfigs.find(
-                            (ec) => ec.name === entityName
-                        )),
-                        instanceName,
-                        endpoint
-                    );
+        let { entityName, instanceName } = await cli.init();
 
-                    await fileGen.generate();
-                    resolve();
-                }
-            );
-        });
+        const fileGen = new FileGen(
+            config,
+            (entityConfig = config.entityConfigs.find(
+                (ec) => ec.name === entityName
+            )),
+            instanceName,
+            endpoint
+        );
+
+        await fileGen.generate();
     };
 
     const greet = () => {

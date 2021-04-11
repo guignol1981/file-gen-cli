@@ -19,7 +19,7 @@
         "change-case": "^3.1.0",
         "figlet": "^1.2.1",
         "inquirer": "^6.2.2",
-        "request": "^2.88.2"
+        "node-fetch": "^2.6.1"
     },
     "devDependencies": {
         "@types/jest": "^24.0.11",

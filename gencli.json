@@ -1,9 +1,9 @@
 {
-    "cliName": "my-app-cli-3",
+    "cliName": "test-cli",
     "fileNameCase": "kebab",
     "folderNameCase": "kebab",
     "templatePath": "src/tests/cli-templates",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6InVsYXZhbCIsImlhdCI6MTYxODA4OTc5NywiZXhwIjoxNjE4OTUzNzk3fQ.ACBu5QHK8dgnyeAIbKyRCd3ZvTF91mPi_e7xtnkinKk",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnQiOiJ0ZXN0IiwiaWF0IjoxNjE4MTQ0NTY5LCJleHAiOjE2MTkwMDg1Njl9.GTYOsvtsRA-iu7Oq3sNX8iU9LIYC4AE70NQddMFtoJo",
     "entityConfigs": [
         {
             "name": "module",

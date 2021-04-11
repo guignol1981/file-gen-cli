@@ -1,22 +1,22 @@
 const changeCase = require('change-case');
 const fs = require('fs');
 const path = require('path');
-const request = require('request');
+const fetch = require('node-fetch');
 
 module.exports = class FileGen {
-    constructor(configName, config, entityConfig, instanceName, endpoint) {
+    constructor(config, entityConfig, instanceName, endpoint) {
         this.configGuard(config);
 
-        this.folderNameCase = config.folderNameCase;
-        this.fileNameCase = config.fileNameCase;
-        this.configName = configName;
+        this.folderNameCase = config.folderNameCase || 'kebab';
+        this.fileNameCase = config.fileNameCase || 'kebab';
+        this.cliName = config.cliName;
         this.entityConfig = entityConfig;
         this.instanceName = instanceName;
         this.endpoint = endpoint;
     }
 
     configGuard(config) {
-        if (!config || !config.folderNameCase || !config.fileNameCase) {
+        if (!config || !config.cliName) {
             throw Error(
                 'there is a problem with your configuration, please refer to documentation'
             );
@@ -71,18 +71,11 @@ module.exports = class FileGen {
     }
 
     async getTemplateContent(fileConfig) {
-        return new Promise((resolve) => {
-            request.get(
-                `${this.endpoint}configs/${this.configName}/files/${fileConfig.template}`,
-                (err, req, body) => {
-                    resolve(
-                        this.replaceTemplatePlaceholders(
-                            JSON.parse(body).content
-                        )
-                    );
-                }
-            );
-        });
+        const { template } = await fetch(
+            `${this.endpoint}/configs/${this.cliName}/files/${fileConfig.template}`
+        ).then((res) => res.json());
+
+        return this.replaceTemplatePlaceholders(template);
     }
 
     replaceTemplatePlaceholders(contents) {
