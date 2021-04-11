@@ -4,7 +4,7 @@
     "fileNameCase": "kebab",
     "folderNameCase": "kebab",
     "templatePath": "src/tests/cli-templates",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnQiOiJ0ZXN0IiwiaWF0IjoxNjE4MTQ0NTY5LCJleHAiOjE2MTkwMDg1Njl9.GTYOsvtsRA-iu7Oq3sNX8iU9LIYC4AE70NQddMFtoJo",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnQiOiJ0ZXN0IiwiaWF0IjoxNjE4MTY1NzE1LCJleHAiOjE2NDk3MDE3MTV9.mt23-xE4-v-Aw0LEFF19cBqJ2s591GLQZe5ixFxjhBA",
     "entityConfigs": [
         {
             "name": "module",

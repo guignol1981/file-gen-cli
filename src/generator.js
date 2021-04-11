@@ -3,130 +3,100 @@ const fs = require('fs');
 const path = require('path');
 const fetch = require('node-fetch');
 
-module.exports = class FileGen {
-    constructor(config, entityConfig, instanceName, endpoint) {
-        this.configGuard(config);
-
-        this.folderNameCase = config.folderNameCase || 'kebab';
-        this.fileNameCase = config.fileNameCase || 'kebab';
-        this.cliName = config.cliName;
-        this.entityConfig = entityConfig;
-        this.instanceName = instanceName;
-        this.endpoint = endpoint;
-    }
-
-    configGuard(config) {
-        if (!config || !config.cliName) {
-            throw Error(
-                'there is a problem with your configuration, please refer to documentation'
-            );
-        }
-    }
-
-    async generate() {
-        return await Promise.all(
-            this.entityConfig.fileConfigs.map(async (fileConfig) => {
-                const dirName = `${process.cwd()}/${changeCase[
-                    this.folderNameCase
-                ](this.instanceName.singular)}`;
-
-                this.createDir(dirName);
-
-                this.instanceName.prefix = this.entityConfig.prefix;
-                fileConfig.path = this.getFilePath(dirName, fileConfig);
-
-                return await this.createFile(fileConfig);
-            })
+module.exports = async (config, entityConfig, instanceName, endpoint) => {
+    if (!config || !config.cliName) {
+        throw Error(
+            'there is a problem with your configuration, please refer to documentation'
         );
     }
 
-    createDir(dirName) {
+    const createDir = (dirName) => {
         if (fs.existsSync(path.normalize(dirName))) {
             return;
         }
 
         fs.mkdirSync(path.normalize(dirName));
-    }
+    };
 
-    getFilePath(dirName, fileConfig) {
+    const getFilePath = (dirName, fileConfig) => {
         const fileName = fileConfig.name.replace(
             '*',
-            `${changeCase[this.fileNameCase](this.instanceName.singular)}`
+            `${changeCase[config.fileNameCase || 'kebab'](
+                instanceName.singular
+            )}`
         );
 
         return `${dirName}/${fileName}`;
-    }
+    };
 
-    async createFile(fileConfig) {
+    const getTemplateContent = async (fileConfig) => {
+        const { template } = await fetch(
+            `${endpoint}/configs/${config.cliName}/files/${fileConfig.template}`
+        ).then((res) => res.json());
+
+        return replaceTemplatePlaceholders(template);
+    };
+
+    const createFile = async (fileConfig) => {
         if (!fileConfig.template) {
             fs.openSync(path.normalize(fileConfig.path), 'w');
             return Promise.resolve();
         }
 
-        const contents = await this.getTemplateContent(fileConfig);
+        const contents = await getTemplateContent(fileConfig);
 
         fs.writeFileSync(path.normalize(fileConfig.path), contents);
+    };
 
-        return Promise.resolve();
-    }
-
-    async getTemplateContent(fileConfig) {
-        const { template } = await fetch(
-            `${this.endpoint}/configs/${this.cliName}/files/${fileConfig.template}`
-        ).then((res) => res.json());
-
-        return this.replaceTemplatePlaceholders(template);
-    }
-
-    replaceTemplatePlaceholders(contents) {
+    const replaceTemplatePlaceholders = (contents) => {
         contents = contents
             .replace(
                 /{{SINGULAR_PASCAL}}/gi,
-                changeCase.pascalCase(this.instanceName.singular)
+                changeCase.pascalCase(instanceName.singular)
             )
             .replace(
                 /{{SINGULAR_CAMEL}}/gi,
-                changeCase.camelCase(this.instanceName.singular)
+                changeCase.camelCase(instanceName.singular)
             )
             .replace(
                 /{{SINGULAR_CONSTANT}}/gi,
-                changeCase.constantCase(this.instanceName.singular)
+                changeCase.constantCase(instanceName.singular)
             )
             .replace(
                 /{{SINGULAR_KEBAB}}/gi,
-                changeCase.kebabCase(this.instanceName.singular)
+                changeCase.kebabCase(instanceName.singular)
             )
             .replace(
                 /{{SINGULAR_SNAKE}}/gi,
-                changeCase.snakeCase(this.instanceName.singular)
+                changeCase.snakeCase(instanceName.singular)
             )
             .replace(
                 /{{PLURAL_PASCAL}}/gi,
-                changeCase.pascalCase(this.instanceName.plural)
+                changeCase.pascalCase(instanceName.plural)
             )
             .replace(
                 /{{PLURAL_CAMEL}}/gi,
-                changeCase.camelCase(this.instanceName.plural)
+                changeCase.camelCase(instanceName.plural)
             )
             .replace(
                 /{{PLURAL_CONSTANT}}/gi,
-                changeCase.constantCase(this.instanceName.plural)
+                changeCase.constantCase(instanceName.plural)
             )
             .replace(
                 /{{PLURAL_KEBAB}}/gi,
-                changeCase.kebabCase(this.instanceName.plural)
+                changeCase.kebabCase(instanceName.plural)
             )
             .replace(
                 /{{PLURAL_SNAKE}}/gi,
-                changeCase.snakeCase(this.instanceName.plural)
+                changeCase.snakeCase(instanceName.plural)
             );
 
-        return this.replacePrefixedTemplatePlaceholders(contents);
-    }
+        return replacePrefixedTemplatePlaceholders(contents);
+    };
 
-    replacePrefixedTemplatePlaceholders(contents, instanceName) {
-        const prefixedSingular = `${this.instanceName.prefix} ${this.instanceName.singular}`;
-        const prefixedPlural = `${this.instanceName.prefix} ${this.instanceName.plural}`;
+    const replacePrefixedTemplatePlaceholders = (contents) => {
+        const prefixedSingular = `${instanceName.prefix} ${instanceName.singular}`;
+        const prefixedPlural = `${instanceName.prefix} ${instanceName.plural}`;
 
         return contents
             .replace(
@@ -169,5 +139,20 @@ module.exports = class FileGen {
                 /{{PREFIXED_PLURAL_SNAKE}}/gi,
                 changeCase.snakeCase(prefixedPlural)
             );
-    }
+    };
+
+    return await Promise.all(
+        entityConfig.fileConfigs.map(async (fileConfig) => {
+            const dirName = `${process.cwd()}/${changeCase[
+                config.folderNameCase || 'kebab'
+            ](instanceName.singular)}`;
+
+            createDir(dirName);
+
+            instanceName.prefix = entityConfig.prefix;
+            fileConfig.path = getFilePath(dirName, fileConfig);
+
+            return await createFile(fileConfig);
+        })
+    );
 };

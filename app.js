@@ -4,10 +4,10 @@ const args = process.argv.slice(2);
 const figlet = require('figlet');
 const chalk = require('chalk');
 const CLI = require('./src/cli');
-const FileGen = require('./src/file-gen');
+const registrator = require('./src/registrator');
+const generator = require('./src/generator');
 const path = require('path');
 const fetch = require('node-fetch');
-const { registor } = require('./src/registor');
 // const endpoint = 'http://localhost:3000';
 const endpoint = 'https://file-gen-cli.herokuapp.com';
 
@@ -15,7 +15,7 @@ try {
     const registerConfig = async () => {
         try {
             const config = require(path.join(process.cwd(), 'gencli.json'));
-            await registor(config, endpoint);
+            await registrator(config, endpoint);
         } catch (e) {
             console.log(e);
         }
@@ -30,7 +30,7 @@ try {
 
         let { entityName, instanceName } = await cli.init();
 
-        const fileGen = new FileGen(
+        await generator(
             config,
             (entityConfig = config.entityConfigs.find(
                 (ec) => ec.name === entityName
@@ -38,8 +38,6 @@ try {
             instanceName,
             endpoint
         );
-
-        await fileGen.generate();
     };
 
     const greet = () => {
