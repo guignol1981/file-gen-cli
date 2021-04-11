@@ -4,7 +4,7 @@ const path = require('path');
 const request = require('request');
 
 module.exports = class FileGen {
-    constructor(configName, config, entityConfig, instanceName) {
+    constructor(configName, config, entityConfig, instanceName, endpoint) {
         this.configGuard(config);
 
         this.folderNameCase = config.folderNameCase;
@@ -12,6 +12,7 @@ module.exports = class FileGen {
         this.configName = configName;
         this.entityConfig = entityConfig;
         this.instanceName = instanceName;
+        this.endpoint = endpoint;
     }
 
     configGuard(config) {
@@ -72,7 +73,7 @@ module.exports = class FileGen {
     async getTemplateContent(fileConfig) {
         return new Promise((resolve) => {
             request.get(
-                `https://file-gen-cli.herokuapp.com/configs/${this.configName}/files/${fileConfig.template}`,
+                `${this.endpoint}configs/${this.configName}/files/${fileConfig.template}`,
                 (err, req, body) => {
                     resolve(
                         this.replaceTemplatePlaceholders(
