@@ -34,21 +34,22 @@ When the register is done, and you use file-gen-cli with you config name paramet
 
 ### General config
 
-| Param          | definition                                                                      | default | required | possible values                       |
-| -------------- | ------------------------------------------------------------------------------- | ------- | -------- | ------------------------------------- |
-| accountKey     | the service account key, needed to create new configs                           |         | true     | contact me to get a key               |
-| fileNameCase   | the case of the files name                                                      | kebab   | false    | kebab, camel, pascal, constant, snake |
-| folderNameCase | the case of the folders name                                                    | kebab   | false    | kebab, camel, pascal, constant, snake |
-| entityConfigs  | an array of entity configs                                                      |         | true     |                                       |
+| Param          | definition                   | default | required | possible values                       |
+| -------------- | ---------------------------- | ------- | -------- | ------------------------------------- |
+| cliName        | new name of your config      |         | true     | a string with no spaces               |
+| token          | a jwt to generate new config |         | true     | contact me to get a token             |
+| fileNameCase   | the case of the files name   | kebab   | false    | kebab, camel, pascal, constant, snake |
+| folderNameCase | the case of the folders name | kebab   | false    | kebab, camel, pascal, constant, snake |
+| entityConfigs  | an array of entity configs   |         | true     | see Entity config bellow              |
 
 ### Entity config
 
-| Param        | definition                                                                                     | default | required | possible values |
-| ------------ | ---------------------------------------------------------------------------------------------- | ------- | -------- | --------------- |
-| name         | the entity name                                                                                |         | true     |                 |
-| prefix       | the entity prefix that can occur in different files template                                   |         | false    |                 |
-| fileConfigs  | an array of file configs                                                                       |         | true     |                 |
-| singularOnly | if there is only singular name instances                                                       | false   | false    |                 |
+| Param        | definition                                                   | default | required | possible values |
+| ------------ | ------------------------------------------------------------ | ------- | -------- | --------------- |
+| name         | the entity name                                              |         | true     |                 |
+| prefix       | the entity prefix that can occur in different files template |         | false    |                 |
+| fileConfigs  | an array of file configs                                     |         | true     |                 |
+| singularOnly | if there is only singular name occurence in templates        | false   | false    |                 |
 
 ### File config
 
