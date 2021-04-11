@@ -17,7 +17,7 @@ A CLI that generate files for your application
     > `npm i file-gen-cli@latest -g`
 -   Add a folder to hold your templates and gencli.json files
     > files templates examples [here](https://github.com/guignol1981/file-gen-cli/tree/master/example/cli-templates)
-    > see bellow for gencli configuration [here](https://github.com/guignol1981/file-gen-cli/tree/master/example/gencli.json)
+    see bellow for gencli configuration, example [here](https://github.com/guignol1981/file-gen-cli/tree/master/example/gencli.json)
 -   Register your cli config with
     > `file-gen-cli register`
 -   Use your config with
