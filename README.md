@@ -20,8 +20,10 @@ A CLI that generate files for your application
     > see bellow for gencli configuration [here](https://github.com/guignol1981/file-gen-cli/tree/master/example/gencli.json)
 -   Register your cli config with
     > `file-gen-cli register`
--   Use your config with
+-   Use your cli with
     > `file-gen-cli myCliName`
+-   List clis with
+    > `file-gen-cli list`
 
 ## How it works
 
