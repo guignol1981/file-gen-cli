@@ -2,7 +2,7 @@
     "cliName": "example-cli",
     "fileNameCase": "kebab",
     "folderNameCase": "kebab",
-    "token": "as me one!",
+    "token": "ask me one!",
     "entityConfigs": [
         {
             "name": "module",

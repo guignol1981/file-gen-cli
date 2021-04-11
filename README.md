@@ -21,7 +21,7 @@ A CLI that generate files for your application
 -   Register your cli config with
     > `file-gen-cli register`
 -   Use your config with
-    > `file-gen-cli myConfig`
+    > `file-gen-cli myCliName`
 
 ## How it works
 

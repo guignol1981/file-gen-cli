@@ -8,8 +8,8 @@ const FileGen = require('./src/file-gen');
 const path = require('path');
 const fetch = require('node-fetch');
 const { registor } = require('./src/registor');
-const endpoint = 'http://localhost:3000';
-// const endpoint = 'https://file-gen-cli.herokuapp.com';
+// const endpoint = 'http://localhost:3000';
+const endpoint = 'https://file-gen-cli.herokuapp.com';
 
 try {
     const registerConfig = async () => {
