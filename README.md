@@ -31,7 +31,7 @@ When you use the register parameters, file-gen-cli will lookup in the folder it'
 
 **you can rewrite the config the same way**
 
-When the register is done, and you use file-gen-cli with you cli name as parameter, it will then generate the files accordingly to you cloud config.
+When the register is done, and you use file-gen-cli with you cli name as parameter, it will then generate the files.
 
 ## Documentation (gencli.json)
 
