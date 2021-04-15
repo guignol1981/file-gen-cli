@@ -23,7 +23,9 @@ A CLI that generate files for your application
 -   Use your cli with
     > `file-gen-cli myCliName`
 -   List clis with
-    > `file-gen-cli list`
+    > `file-gen-cli list
+-   Deduce templates from a folder
+    > `file-gen-cli deduce <instanceName> [<prefix> <instanceNamePlural>]`
 
 ## How it works
 
