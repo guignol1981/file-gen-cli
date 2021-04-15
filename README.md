@@ -31,7 +31,9 @@ When you use the register parameters, file-gen-cli will lookup in the folder it'
 
 **you can rewrite the config the same way**
 
-When the register is done, and you use file-gen-cli with you config name parameter, it will then generate the files accordingly to you cloud config.
+When the register is done, and you use file-gen-cli with you cli name as parameter, it will then generate the files.
+
+File gen cli use an heroku hosted server app to manage the configs, see how it works here https://github.com/guignol1981/file-gen-cli-server
 
 ## Documentation (gencli.json)
 
