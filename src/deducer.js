@@ -7,7 +7,8 @@ module.exports = (instanceName, prefix = '', plural = '') => {
         fs.mkdirSync(path.normalize('templates'));
     }
 
-    fs.readdirSync(path.normalize('./')).forEach((file) => {
+    fs.readdirSync(process.cwd()).forEach((file) => {
+        if (fs.lstatSync(path.join(process.cwd(), file)).isDirectory()) return;
         let content = fs.readFileSync(path.join(process.cwd(), file), 'utf-8');
 
         if (prefix) {
