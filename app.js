@@ -9,8 +9,8 @@ const path = require('path');
 const fetch = require('node-fetch');
 const registrator = require('./src/registrator');
 const deducer = require('./src/deducer');
-const endpoint = 'http://localhost:3000';
-// const endpoint = 'https://file-gen-cli.herokuapp.com';
+// const endpoint = 'http://localhost:3000';
+const endpoint = 'https://file-gen-cli.herokuapp.com';
 
 try {
     const registerConfig = async () => {
