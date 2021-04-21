@@ -9,8 +9,8 @@ const path = require('path');
 const fetch = require('node-fetch');
 const registrator = require('./src/registrator');
 const deducer = require('./src/deducer');
-// const endpoint = 'http://localhost:3000';
-const endpoint = 'https://file-gen-cli.herokuapp.com';
+const endpoint = 'http://localhost:3000';
+// const endpoint = 'https://file-gen-cli.herokuapp.com';
 
 try {
     const registerConfig = async () => {
@@ -67,7 +67,14 @@ try {
         if (args[0] === 'register') {
             await registerConfig();
         } else if (args[0] === 'deduce') {
-            deducer(args[1], args[2], args[3]);
+            await deducer(
+                {
+                    singular: args[1],
+                    prefix: args[2] || '',
+                    plural: args[3] || '',
+                },
+                endpoint
+            );
         } else if (args[0] === 'list') {
             const { configs } = await fetch(`${endpoint}/configs`).then((res) =>
                 res.json()

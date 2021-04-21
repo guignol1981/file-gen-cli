@@ -56,6 +56,7 @@ File gen cli use an heroku hosted server app to manage the configs, see how it w
 | prefix       | the entity prefix that can occur in different files template |         | false    |                 |
 | fileConfigs  | an array of file configs                                     |         | true     |                 |
 | singularOnly | if there is only singular name occurence in templates        | false   | false    |                 |
+| flat         | determine if the cli should create a folder for the instance | false   | false    |                 |
 
 ### File config
 
@@ -63,6 +64,7 @@ File gen cli use an heroku hosted server app to manage the configs, see how it w
 | -------- | ------------------------------------------------------------------------ | ------- | -------- | --------------- |
 | name     | the file name (the `*` symbole is replaced by the entity instance name)  |         | true     |                 |
 | template | the template name for the file (no template will generate an empty file) |         | false    |                 |
+| path     | path to create the file relative to the instance path                    | ./      | false    |                 |
 
 ### Templates
 

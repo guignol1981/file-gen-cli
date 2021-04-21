@@ -4,13 +4,25 @@ const path = require('path');
 const fetch = require('node-fetch');
 
 module.exports = async (config, entityConfig, instanceName, endpoint) => {
+    let dirName;
+
     if (!config || !config.cliName) {
         throw Error(
             'there is a problem with your configuration, please refer to documentation'
         );
     }
 
-    const createDir = (dirName) => {
+    const createDir = () => {
+        dirName = `${process.cwd()}`;
+
+        if (!entityConfig.flat) {
+            dirName += `/${changeCase[config.folderNameCase || 'kebab'](
+                instanceName.singular
+            )}`;
+        }
+
+        dirName = path.normalize(dirName);
+
         if (fs.existsSync(path.normalize(dirName))) {
             return;
         }
@@ -18,7 +30,7 @@ module.exports = async (config, entityConfig, instanceName, endpoint) => {
         fs.mkdirSync(path.normalize(dirName));
     };
 
-    const getFilePath = (dirName, fileConfig) => {
+    const getFilePath = (fileConfig) => {
         const fileName = fileConfig.name.replace(
             '*',
             `${changeCase[config.fileNameCase || 'kebab'](
@@ -26,15 +38,27 @@ module.exports = async (config, entityConfig, instanceName, endpoint) => {
             )}`
         );
 
-        return `${dirName}/${fileName}`;
+        if (
+            fileConfig.path &&
+            !fs.existsSync(path.join(dirName, fileConfig.path))
+        ) {
+            fs.mkdirSync(path.join(dirName, fileConfig.path));
+        }
+
+        return path.join(dirName, fileConfig.path || '', fileName);
     };
 
     const getTemplateContent = async (fileConfig) => {
         const { template } = await fetch(
-            `${endpoint}/configs/${config.cliName}/files/${fileConfig.template}`
+            `${endpoint}/configs/${config.cliName}/files/${fileConfig.template}`,
+            {
+                method: 'POST',
+                body: JSON.stringify({ instanceName }),
+                headers: { 'Content-Type': 'application/json' },
+            }
         ).then((res) => res.json());
 
-        return replaceTemplatePlaceholders(template);
+        return template;
     };
 
     const createFile = async (fileConfig) => {
@@ -48,109 +72,12 @@ module.exports = async (config, entityConfig, instanceName, endpoint) => {
         fs.writeFileSync(path.normalize(fileConfig.path), contents);
     };
 
-    const replaceTemplatePlaceholders = (contents) => {
-        contents = contents
-            .replace(
-                /{{SINGULAR_PASCAL}}/gi,
-                changeCase.pascalCase(instanceName.singular)
-            )
-            .replace(
-                /{{SINGULAR_CAMEL}}/gi,
-                changeCase.camelCase(instanceName.singular)
-            )
-            .replace(
-                /{{SINGULAR_CONSTANT}}/gi,
-                changeCase.constantCase(instanceName.singular)
-            )
-            .replace(
-                /{{SINGULAR_KEBAB}}/gi,
-                changeCase.kebabCase(instanceName.singular)
-            )
-            .replace(
-                /{{SINGULAR_SNAKE}}/gi,
-                changeCase.snakeCase(instanceName.singular)
-            )
-            .replace(
-                /{{PLURAL_PASCAL}}/gi,
-                changeCase.pascalCase(instanceName.plural)
-            )
-            .replace(
-                /{{PLURAL_CAMEL}}/gi,
-                changeCase.camelCase(instanceName.plural)
-            )
-            .replace(
-                /{{PLURAL_CONSTANT}}/gi,
-                changeCase.constantCase(instanceName.plural)
-            )
-            .replace(
-                /{{PLURAL_KEBAB}}/gi,
-                changeCase.kebabCase(instanceName.plural)
-            )
-            .replace(
-                /{{PLURAL_SNAKE}}/gi,
-                changeCase.snakeCase(instanceName.plural)
-            );
-
-        return replacePrefixedTemplatePlaceholders(contents);
-    };
-
-    const replacePrefixedTemplatePlaceholders = (contents) => {
-        const prefixedSingular = `${instanceName.prefix} ${instanceName.singular}`;
-        const prefixedPlural = `${instanceName.prefix} ${instanceName.plural}`;
-
-        return contents
-            .replace(
-                /{{PREFIXED_SINGULAR_PASCAL}}/gi,
-                changeCase.pascalCase(prefixedSingular)
-            )
-            .replace(
-                /{{PREFIXED_SINGULAR_CAMEL}}/gi,
-                changeCase.camelCase(prefixedSingular)
-            )
-            .replace(
-                /{{PREFIXED_SINGULAR_CONSTANT}}/gi,
-                changeCase.constantCase(prefixedSingular)
-            )
-            .replace(
-                /{{PREFIXED_SINGULAR_KEBAB}}/gi,
-                changeCase.kebabCase(prefixedSingular)
-            )
-            .replace(
-                /{{PREFIXED_SINGULAR_SNAKE}}/gi,
-                changeCase.snakeCase(prefixedSingular)
-            )
-            .replace(
-                /{{PREFIXED_PLURAL_PASCAL}}/gi,
-                changeCase.pascalCase(prefixedPlural)
-            )
-            .replace(
-                /{{PREFIXED_PLURAL_CAMEL}}/gi,
-                changeCase.camelCase(prefixedPlural)
-            )
-            .replace(
-                /{{PREFIXED_PLURAL_CONSTANT}}/gi,
-                changeCase.constantCase(prefixedPlural)
-            )
-            .replace(
-                /{{PREFIXED_PLURAL_KEBAB}}/gi,
-                changeCase.kebabCase(prefixedPlural)
-            )
-            .replace(
-                /{{PREFIXED_PLURAL_SNAKE}}/gi,
-                changeCase.snakeCase(prefixedPlural)
-            );
-    };
-
     return await Promise.all(
         entityConfig.fileConfigs.map(async (fileConfig) => {
-            const dirName = `${process.cwd()}/${changeCase[
-                config.folderNameCase || 'kebab'
-            ](instanceName.singular)}`;
-
-            createDir(dirName);
+            createDir();
 
             instanceName.prefix = entityConfig.prefix;
-            fileConfig.path = getFilePath(dirName, fileConfig);
+            fileConfig.path = getFilePath(fileConfig);
 
             return await createFile(fileConfig);
         })
