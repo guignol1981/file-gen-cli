@@ -31,11 +31,11 @@ A CLI that generate files for your application
 
 When you use the register parameters, file-gen-cli will lookup in the folder it's being executed for a gencli.json file. It will then save in the cloud this config associeted with the cliName parameters. It will then look each file configs of each entity configs then will look for each of the templates files name in the folder it's being executed. It will then store those file in the cloud associated with the cli name.
 
-**you can rewrite the config the same way**
+### You can rewrite the config the same way
 
 When the register is done, and you use file-gen-cli with you cli name as parameter, it will then generate the files.
 
-File gen cli use an heroku hosted server app to manage the configs, see how it works here https://github.com/guignol1981/file-gen-cli-server
+File gen cli use an heroku hosted server app to manage the configs, see how it works here <https://github.com/guignol1981/file-gen-cli-server>
 
 ## Documentation (gencli.json)
 
@@ -70,28 +70,27 @@ File gen cli use an heroku hosted server app to manage the configs, see how it w
 
 ### Templates
 
-| keyword                        | replaced with                               |
-| ------------------------------ | ------------------------------------------- |
-| {{SINGULAR_PASCAL}}            | instance name pascal case                   |
-| {{SINGULAR_CAMEL}}             | instance name camel case                    |
-| {{SINGULAR_CONSTANT}}          | instance name constant case                 |
-| {{SINGULAR_KEBAB}}             | instance name kebab case                    |
-| {{SINGULAR_SNAKE}}             | instance name kebab case                    |
-| {{PLURAL_PASCAL}}              | instance plural name pascal case            |
-| {{PLURAL_CAMEL}}               | instance plural name came case              |
-| {{PLURAL_CONSTANT}}            | instance plural name constant case          |
-| {{PLURAL_KEBAB}}               | instance plural name kebab case             |
-| {{PLURAL_SNAKE}}               | instance plural name kebab case             |
-| {{PREFIXED_SINGULAR_PASCAL}}   | instance prefixed name pascal case          |
-| {{PREFIXED_SINGULAR_CAMEL}}    | instance prefixed name camel case           |
-| {{PREFIXED_SINGULAR_CONSTANT}} | instance prefixed name constant case        |
-| {{PREFIXED_SINGULAR_KEBAB}}    | instance prefixed name kebab case           |
-| {{PREFIXED_SINGULAR_SNAKE}}    | instance prefixed name kebab case           |
-| {{PREFIXED_PLURAL_PASCAL}}     | instance prefixed plural name pascal case   |
-| {{PREFIXED_PLURAL_CAMEL}}      | instance prefixed plural name camel case    |
-| {{PREFIXED_PLURAL_CONSTANT}}   | instance prefixed plural name constant case |
-| {{PREFIXED_PLURAL_KEBAB}}      | instance prefixed plural name kebab case    |
-| {{PREFIXED_PLURAL_SNAKE}}      | instance prefixed plural name kebab case    |
+| keywords (\* = supported cases) | replaced with                                     |
+| ------------------------------- | ------------------------------------------------- |
+| {{SINGULAR_*}}                  | instance name with specified case                 |
+| {{PLURAL_*}}                    | instance plural name with specified case          |
+| {{PREFIXED_SINGULAR_*}}         | instance prefixed name with specified case        |
+| {{PREFIXED_PLURAL_*}}           | instance prefixed plural name with specified case |
+
+### Supported Cases
+
+CAMEL,
+CAPITAL,
+CONSTANT,
+DOT,
+HEADER,
+NO,
+KEBAB (deprecate, use PARAM)
+PARAM,
+PASCAL,
+PATH,
+SENTENCE,
+SNAKE,
 
 ## TODO (feel free to help)
 

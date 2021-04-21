@@ -12,6 +12,7 @@ module.exports = async (instanceName, endpoint) => {
         fs.readdirSync(process.cwd()).map(async (file) => {
             if (!fs.lstatSync(path.join(process.cwd(), file)).isFile()) return;
             let raw = fs.readFileSync(path.join(process.cwd(), file), 'utf-8');
+
             const { template } = await fetch(`${endpoint}/templates/deduce`, {
                 method: 'POST',
                 body: JSON.stringify({ instanceName, template: raw }),
