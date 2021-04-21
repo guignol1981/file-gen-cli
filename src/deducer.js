@@ -1,5 +1,4 @@
 const fs = require('fs');
-const changeCase = require('change-case');
 const path = require('path');
 const fetch = require('node-fetch');
 

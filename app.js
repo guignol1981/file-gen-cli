@@ -76,9 +76,11 @@ try {
                 endpoint
             );
         } else if (args[0] === 'list') {
-            const { configs } = await fetch(`${endpoint}/configs`).then((res) =>
-                res.json()
-            );
+            const { configs } = await fetch(`${endpoint}/configs/list`, {
+                method: 'POST',
+                body: JSON.stringify({ tags: args.slice(1) }),
+                headers: { 'Content-Type': 'application/json' },
+            }).then((res) => res.json());
             configs.forEach((c) => {
                 console.log('name: ', c.name);
                 console.log('description: ', c.description);

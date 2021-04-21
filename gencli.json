@@ -1,6 +1,7 @@
 {
     "cliName": "test-cli-2",
     "description": "a cli for test purpose",
+    "tags": ["test", "cli"],
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnQiOiJ0ZXN0IiwiaWF0IjoxNjE4MTY1NzE1LCJleHAiOjE2NDk3MDE3MTV9.mt23-xE4-v-Aw0LEFF19cBqJ2s591GLQZe5ixFxjhBA",
     "entityConfigs": [
         {
