@@ -5,8 +5,7 @@
     "main": "app.js",
     "bin": "./app.js",
     "scripts": {
-        "start": "node app.js",
-        "test": "jest"
+        "start": "node app.js"
     },
     "author": "Vincent Guillemette",
     "repository": {

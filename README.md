@@ -2,7 +2,6 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/guignol1981/file-gen-cli/badge)](https://www.codefactor.io/repository/github/guignol1981/file-gen-cli)
 [![npm version](https://badge.fury.io/js/file-gen-cli.svg)](https://badge.fury.io/js/file-gen-cli)
 [![BCH compliance](https://bettercodehub.com/edge/badge/guignol1981/file-gen-cli?branch=master)](https://bettercodehub.com/)
-[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Speed up with
@@ -94,7 +93,6 @@ SNAKE,
 
 ## TODO (feel free to help)
 
--   Support nested folders
 -   Convert to Typescript
 
 ## Contributing
