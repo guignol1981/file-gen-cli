@@ -7,10 +7,12 @@
         {
             "name": "module",
             "prefix": "myapp",
+            "flat": true,
             "fileConfigs": [
                 {
                     "name": "*.ts",
-                    "template": "model.txt"
+                    "template": "model.txt",
+                    "path": "./model"
                 },
                 {
                     "name": "*-service.ts",
