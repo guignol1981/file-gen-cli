@@ -28,7 +28,7 @@ function print(entity) {
             if (path[1]) {
                 parsePath(path.slice(1), branch[path[0]]);
             } else {
-                if (!branch[path[0]] || !(branch[path[0]] instanceof Array)) {
+                if (!(branch[path[0]] instanceof Array)) {
                     branch[path[0]] = [];
                 }
 
