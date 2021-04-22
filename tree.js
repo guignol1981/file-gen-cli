@@ -31,8 +31,9 @@ function print(entity) {
                 if (!(branch[path[0]] instanceof Array)) {
                     branch[path[0]] = [];
                 }
-
-                branch[path[0]].push(file.name);
+                if (!branch[path[0]].includes(file.name)) {
+                    branch[path[0]].push(file.name);
+                }
                 return;
             }
         };
