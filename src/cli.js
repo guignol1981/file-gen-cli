@@ -23,7 +23,9 @@ module.exports = class CLI {
     async init() {
         const entityName = await this.queryEntity();
 
-        console.log(chalk.blue('this will generate this structure: '));
+        console.log(
+            chalk.blue('this will generate this structure: (* = instance name)')
+        );
         console.log(
             chalk.green(process.cwd().split('\\').pop()),
             chalk.yellow('<<< you are here')

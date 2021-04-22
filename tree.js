@@ -16,7 +16,7 @@ function print(entity) {
     let tree = {};
 
     if (!entity.flat) {
-        lines.push(SYMBOLS.LAST_BRANCH + entity.name);
+        lines.push(SYMBOLS.LAST_BRANCH + '*');
     }
 
     entity.fileConfigs.forEach((file, fi, fa) => {
@@ -28,7 +28,7 @@ function print(entity) {
             if (path[1]) {
                 parsePath(path.slice(1), branch[path[0]]);
             } else {
-                if (!branch[path[0]] || branch[path[0]] instanceof Object) {
+                if (!branch[path[0]] || !(branch[path[0]] instanceof Array)) {
                     branch[path[0]] = [];
                 }
 
