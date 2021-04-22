@@ -43,7 +43,6 @@ function print(entity) {
 
     const parseTree = (branch, line) => {
         if (branch instanceof Array) {
-            lines.push(line + SYMBOLS.LAST_BRANCH + branch[0]);
             branch.forEach((b) => {
                 lines.push(line + SYMBOLS.LAST_BRANCH + b);
             });
