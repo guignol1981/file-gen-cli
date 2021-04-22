@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
-
+const tree = require('../tree');
+const chalk = require('chalk');
 module.exports = class CLI {
     constructor(config) {
         this.configGuard(config);
@@ -21,6 +22,18 @@ module.exports = class CLI {
 
     async init() {
         const entityName = await this.queryEntity();
+
+        console.log(chalk.blue('this will generate this structure: '));
+        console.log(
+            chalk.green(process.cwd().split('\\').pop()),
+            chalk.yellow('<<< you are here')
+        );
+        console.log(
+            chalk.green(
+                tree(this.entityConfigs.find((ec) => ec.name === entityName))
+            )
+        );
+
         const instanceNameSingular = await this.queryInstanceNameSingular();
 
         let instanceNamePlural = '';

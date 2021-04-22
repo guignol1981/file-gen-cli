@@ -1,23 +1,33 @@
 {
-    "cliName": "test-cli-2",
+    "cliName": "test-cli-3",
     "description": "a cli for test purpose",
     "tags": ["test", "cli"],
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnQiOiJ0ZXN0IiwiaWF0IjoxNjE4MTY1NzE1LCJleHAiOjE2NDk3MDE3MTV9.mt23-xE4-v-Aw0LEFF19cBqJ2s591GLQZe5ixFxjhBA",
     "entityConfigs": [
         {
             "name": "module",
-            "flat": false,
             "singularOnly": true,
+            "flat": false,
             "prefix": "test",
             "fileConfigs": [
                 {
                     "name": "*-test.ts",
-                    "template": "test.txt",
-                    "path": "/configs"
+                    "template": "test.txt"
                 },
                 {
-                    "name": "*-test.ts",
-                    "template": "test.txt"
+                    "name": "*-test2.ts",
+                    "template": "test.txt",
+                    "path": "a/d/c"
+                },
+                {
+                    "name": "*-test3.ts",
+                    "template": "test.txt",
+                    "path": "a/b/c"
+                },
+                {
+                    "name": "*-test3.ts",
+                    "template": "test.txt",
+                    "path": "k/ki-asd"
                 }
             ]
         }

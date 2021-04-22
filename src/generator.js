@@ -42,7 +42,9 @@ module.exports = async (config, entityConfig, instanceName, endpoint) => {
             fileConfig.path &&
             !fs.existsSync(path.join(dirName, fileConfig.path))
         ) {
-            fs.mkdirSync(path.join(dirName, fileConfig.path));
+            fs.mkdirSync(path.join(dirName, fileConfig.path), {
+                recursive: true,
+            });
         }
 
         return path.join(dirName, fileConfig.path || '', fileName);
