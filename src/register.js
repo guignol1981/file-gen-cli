@@ -3,8 +3,10 @@ const FormData = require('form-data');
 const fs = require('fs');
 const path = require('path');
 
-module.exports = async (config, endpoint) => {
-    const res = await fetch(`${endpoint}/configs`, {
+module.exports = async () => {
+    const config = require(path.join(process.cwd(), 'gencli.json'));
+
+    const res = await fetch(`${process.env.APP_BASE_URL}/configs`, {
         method: 'POST',
         body: JSON.stringify(config),
         headers: {
@@ -43,7 +45,7 @@ module.exports = async (config, endpoint) => {
                             }
                         );
                         const res = await fetch(
-                            `${endpoint}/configs/${config.cliName}/files`,
+                            `${process.env.APP_BASE_URL}/configs/${config.cliName}/files`,
                             {
                                 method: 'POST',
                                 headers: {

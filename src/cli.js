@@ -1,10 +1,9 @@
 const inquirer = require('inquirer');
-const tree = require('../tree');
+const tree = require('./tree');
 const chalk = require('chalk');
 module.exports = class CLI {
     constructor(config) {
         this.configGuard(config);
-
         this.entityConfigs = config.entityConfigs;
     }
 

@@ -2,8 +2,9 @@ const changeCase = require('change-case');
 const fs = require('fs');
 const path = require('path');
 const fetch = require('node-fetch');
+const CLI = require('./cli');
 
-module.exports = async (config, entityConfig, instanceName, endpoint) => {
+const generate = async (config, entityConfig, instanceName) => {
     let dirName;
 
     if (!config || !config.cliName) {
@@ -52,7 +53,7 @@ module.exports = async (config, entityConfig, instanceName, endpoint) => {
 
     const getTemplateContent = async (fileConfig) => {
         const { template } = await fetch(
-            `${endpoint}/configs/${config.cliName}/files/${fileConfig.template}`,
+            `${process.env.APP_BASE_URL}/configs/${config.cliName}/files/${fileConfig.template}`,
             {
                 method: 'POST',
                 body: JSON.stringify({ instanceName }),
@@ -83,5 +84,24 @@ module.exports = async (config, entityConfig, instanceName, endpoint) => {
 
             return await createFile(fileConfig);
         })
+    );
+};
+
+module.exports = async (cliName) => {
+    const { config } = await fetch(
+        `${process.env.APP_BASE_URL}/configs/${cliName}`
+    ).then((res) => res.json());
+
+    let cli = new CLI(config);
+
+    let { entityName, instanceName } = await cli.init();
+
+    await generate(
+        config,
+        (entityConfig = config.entityConfigs.find(
+            (ec) => ec.name === entityName
+        )),
+        instanceName,
+        process.env.APP_BASE_URL
     );
 };
