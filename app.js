@@ -8,6 +8,7 @@ const register = require('./src/register');
 const deduce = require('./src/deduce');
 const version = require('./src/version');
 const help = require('./src/help');
+process.env.APP_BASE_URL = `https://file-gen-cli.herokuapp.com`;
 
 const greet = () => {
     console.log(chalk.white.bold.bgGreen(' CLI-fy '));
