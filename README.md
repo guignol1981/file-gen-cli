@@ -26,9 +26,6 @@ A CLI that generate files for your application
 -   Deduce templates from a folder
     > `file-gen-cli deduce <instanceName> [<prefix> <instanceNamePlural>]`
 
-## How it works
-
-When you use the register parameters, file-gen-cli will lookup in the folder it's being executed for a gencli.json file. It will then save in the cloud this config associeted with the cliName parameters. It will then look each file configs of each entity configs then will look for each of the templates files name in the folder it's being executed. It will then store those file in the cloud associated with the cli name.
 
 ### You can rewrite the config the same way
 
